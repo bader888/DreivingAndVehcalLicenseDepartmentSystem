@@ -20,6 +20,8 @@ namespace DVLD.Tests
 
         private void btnAddNewAppointment_Click(object sender, EventArgs e)
         {
+            frmScheduleTest frm = new frmScheduleTest();
+            frm.ShowDialog();
 
         }
 

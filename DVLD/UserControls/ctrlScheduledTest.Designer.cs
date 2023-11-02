@@ -122,6 +122,7 @@
             // 
             // pictureBox5
             // 
+            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
             this.pictureBox5.Location = new System.Drawing.Point(172, 511);
             this.pictureBox5.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.pictureBox5.Name = "pictureBox5";
@@ -143,6 +144,7 @@
             // 
             // pictureBox7
             // 
+            this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
             this.pictureBox7.Location = new System.Drawing.Point(172, 304);
             this.pictureBox7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox7.Name = "pictureBox7";
@@ -175,6 +177,7 @@
             // 
             // pictureBox4
             // 
+            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
             this.pictureBox4.Location = new System.Drawing.Point(172, 268);
             this.pictureBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox4.Name = "pictureBox4";
@@ -218,6 +221,7 @@
             // 
             // pictureBox2
             // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(172, 343);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.pictureBox2.Name = "pictureBox2";
@@ -261,6 +265,7 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(172, 385);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.pictureBox1.Name = "pictureBox1";
@@ -293,6 +298,7 @@
             // 
             // pictureBox3
             // 
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
             this.pictureBox3.Location = new System.Drawing.Point(172, 469);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.pictureBox3.Name = "pictureBox3";
@@ -314,6 +320,7 @@
             // 
             // pictureBox8
             // 
+            this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
             this.pictureBox8.Location = new System.Drawing.Point(172, 427);
             this.pictureBox8.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.pictureBox8.Name = "pictureBox8";
