@@ -62,45 +62,6 @@ namespace DVDL_DataAccess
             return (rowsAffected > 0);
         }
 
-        public static DataTable GetAllTestAppointments(int L_DappID, string TestTypeTitle)
-        {
-            DataTable dt = new DataTable();
-            SqlConnection connection = new SqlConnection(clsConnectionString.connectionString);
-            string query = @" 
-                            select 
-                            TestAppointmentID,
-                            AppointmentDate,
-                            PaidFees, 
-                            IsLocked 
-                            from 
-                            TestAppointments_View 
-                            where 
-                            LocalDrivingLicenseApplicationID = @L_DappID and TestTypeTitle like  '%' + @TestTypeTitle + '%' ";
-            SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@L_DappID", L_DappID);
-            command.Parameters.AddWithValue("@TestTypeTitle", TestTypeTitle);
-
-            try
-            {
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    dt.Load(reader);
-                }
-                reader.Close();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error: " + ex.Message);
-            }
-            finally
-            {
-                connection.Close();
-            }
-            return dt;
-        }
-
         public static bool IsTestAppointmentsExist(int TestAppointmentID)
         {
             bool isFound = false;
@@ -162,13 +123,13 @@ namespace DVDL_DataAccess
             return isFound;
         }
 
-        public static bool GetTestAppointmentsInfoByID(ref int TestAppointmentID, ref int TestTypeID, ref int LocalDrivingLicenseApplicationID, ref DateTime AppointmentDate, ref decimal PaidFees, ref int CreatedByUserID, ref bool IsLocked)
+        public static bool GetTestAppointmentInfoID(ref int TestAppointmentID, ref int TestTypeID, ref int LocalDrivingLicenseApplicationID, ref DateTime AppointmentDate, ref decimal PaidFees, ref int CreatedByUserID, ref bool IsLocked)
         {
             bool isFound = false;
             SqlConnection connection = new SqlConnection(clsConnectionString.connectionString);
-            string query = "SELECT * FROM TestAppointments WHERE LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID";
+            string query = "SELECT * FROM TestAppointments WHERE TestAppointmentID = @TestAppointmentID";
             SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
+            command.Parameters.AddWithValue("@TestAppointmentID", TestAppointmentID);
             try
             {
                 connection.Open();
@@ -227,7 +188,7 @@ namespace DVDL_DataAccess
                                 CreatedByUserID = @CreatedByUserID, 
                                 IsLocked = @IsLocked  
                              WHERE 
-                                LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID;";
+                                TestAppointmentID = @TestAppointmentID;";
 
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@TestAppointmentID", TestAppointmentID);
@@ -290,5 +251,46 @@ namespace DVDL_DataAccess
             }
             return dt;
         }
+
+        public static DataTable GetTestAppointmentForSpecificTest(int L_DappID, string TestTypeTitle)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection connection = new SqlConnection(clsConnectionString.connectionString);
+            string query = @" 
+                            select 
+                            TestAppointmentID,
+                            AppointmentDate,
+                            PaidFees, 
+                            IsLocked 
+                            from 
+                            TestAppointments_View 
+                            where 
+                            LocalDrivingLicenseApplicationID = @L_DappID and TestTypeTitle like  '%' + @TestTypeTitle + '%' ";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@L_DappID", L_DappID);
+            command.Parameters.AddWithValue("@TestTypeTitle", TestTypeTitle);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    dt.Load(reader);
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return dt;
+        }
+
+
     }
 }

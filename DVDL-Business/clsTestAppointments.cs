@@ -57,7 +57,7 @@ namespace DVDL_Business
             int CreatedByUserID = -1;
             bool IsLocked = false;
 
-            if (clsTestAppointmentsData.GetTestAppointmentsInfoByID(
+            if (clsTestAppointmentsData.GetTestAppointmentInfoID(
              ref TestAppointmentsID,
             ref TestTypeID,
             ref LocalDrivingLicenseApplicationID,
@@ -135,9 +135,9 @@ namespace DVDL_Business
             return clsTestAppointmentsData.IsTestAppointmentsExist(ID);
         }
 
-        static public DataTable GetAllTestAppointments(int L_DappID, string TestTypeTitle)
+        static public DataTable GetTestAppointmentForSpecificTest(int L_DappID, string TestTypeTitle)
         {
-            return clsTestAppointmentsData.GetAllTestAppointments(L_DappID, TestTypeTitle);
+            return clsTestAppointmentsData.GetTestAppointmentForSpecificTest(L_DappID, TestTypeTitle);
         }
 
         static public DataTable GetTestAppointmentByID(int TestAppointmentID)

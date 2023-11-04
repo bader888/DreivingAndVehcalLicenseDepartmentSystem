@@ -30,7 +30,7 @@ namespace DVLD.Tests
         private void _ShowTestAppointment()
         {
             ctrlDrivingLicenseApplicationInfo1._ShowDrivingLicenseApplicationInfo(clsGlobal.L_DappID);
-            dgvLicenseTestAppointments.DataSource = clsTestAppointments.GetAllTestAppointments(clsGlobal.L_DappID, clsGlobal.TestType);
+            dgvLicenseTestAppointments.DataSource = clsTestAppointments.GetTestAppointmentForSpecificTest(clsGlobal.L_DappID, clsGlobal.TestType);
         }
 
         private void ctrlDrivingLicenseApplicationInfo1_Load(object sender, EventArgs e)

@@ -15,8 +15,6 @@ namespace DVLD.UserControls
 
         clsTestAppointments testAppointments = new clsTestAppointments();
 
-
-
         public int TestappointmentID { get; set; }
 
         public bool UpdateMode { get; set; }
@@ -68,7 +66,9 @@ namespace DVLD.UserControls
         {
 
             if (UpdateMode)
-                testAppointments = clsTestAppointments.Find(clsGlobal.L_DappID);
+            {
+                testAppointments = clsTestAppointments.Find(this.TestappointmentID);
+            }
             else
             {
                 if (clsTestAppointments.IsPersonHaveActiveTest(clsGlobal.L_DappID))
