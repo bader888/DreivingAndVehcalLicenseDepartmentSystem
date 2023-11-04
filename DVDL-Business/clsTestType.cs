@@ -56,10 +56,15 @@ namespace DVDL_Business
         {
             return _UpdateTestTypes();
         }
-
         static public DataTable GetAllTestTypes()
         {
             return clsTestTypeData.GetAllTestTypes();
         }
+
+        public static decimal GetTestTypeFeesByTitle(string Title)
+        {
+            return clsTestTypeData.GetTestTypeFeesByTitle(Title);
+        }
+
     }
 }

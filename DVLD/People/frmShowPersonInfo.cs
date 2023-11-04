@@ -5,12 +5,12 @@ namespace DVLD
     public partial class frmShowPersonInfo : Form
     {
         private int _PersonID = -1;
+
         public frmShowPersonInfo(int PersonID)
         {
             InitializeComponent();
 
             _PersonID = PersonID;
-
         }
 
         private void frmShowPersonInfo_Load(object sender, System.EventArgs e)

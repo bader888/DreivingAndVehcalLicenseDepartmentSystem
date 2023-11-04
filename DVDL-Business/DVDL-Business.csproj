@@ -44,7 +44,9 @@
     <Compile Include="clsApplications.cs" />
     <Compile Include="clsApplicationType.cs" />
     <Compile Include="clsCountries.cs" />
+    <Compile Include="UserControlLogic\clsCtrlDrivingLicenseBasicInfo.cs" />
     <Compile Include="clsLocalDrivingLicenseApplications.cs" />
+    <Compile Include="clsTestAppointments.cs" />
     <Compile Include="clsTestType.cs" />
     <Compile Include="clsUsers.cs" />
     <Compile Include="clsLicenseClasses.cs" />
@@ -55,6 +57,7 @@
     <Compile Include="Lib\clsValidationaHelper.cs" />
     <Compile Include="Lib\LoginSystem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControlLogic\clsCtrlSchduledTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DVDL-DataAccess\DVDL-DataAccess.csproj">

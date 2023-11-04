@@ -109,12 +109,6 @@ namespace DVDL_Business
             return clsLocalDrivingLicenseApplicationsData.IsLocalDrivingLicenseApplicationsExist(ID);
         }
 
-        static public DataTable GetDrivingLicenseAppInfo(int L_D_LappID)
-        {
-            return clsLocalDrivingLicenseApplicationsData.GetDrivingLicenseAppInfo(L_D_LappID);
-        }
-
-
         static public DataTable GetAllLocalDrivingLicenseApplications()
         {
             return clsLocalDrivingLicenseApplicationsData.GetAllLocalDrivingLicenseApplications();

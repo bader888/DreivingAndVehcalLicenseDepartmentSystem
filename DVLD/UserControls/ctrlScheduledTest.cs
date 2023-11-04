@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using DVDL_Business.UserControlLogic;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DVLD.UserControls
@@ -15,6 +9,21 @@ namespace DVLD.UserControls
         public ctrlScheduledTest()
         {
             InitializeComponent();
+        }
+
+        public int TestAppointmentID { get; set; }
+
+        public void ShowScheduleTestInfo(int TestAppointmentID)
+        {
+            DataTable dt = clsCtrlSchduledTest.GetSchduledTestInfo(TestAppointmentID);
+            DataRow row = dt.Rows[0];
+            lblDate.Text = row["AppointmentDate"].ToString();
+            lblDrivingClass.Text = row["ClassName"].ToString();
+            lblFees.Text = row["PaidFees"].ToString();
+            lblLocalDrivingLicenseAppID.Text = row["LocalDrivingLicenseApplicationID"].ToString();
+            lblFullName.Text = row["FullName"].ToString();
+            lblTrial.Text = "0";
+
         }
     }
 }

@@ -29,10 +29,34 @@ namespace DVLD.ManageApplications
             frm.ShowDialog();
         }
 
+        private void _ShowScheduleTestForm(int L_DappID, string TestType)
+        {
+            frmListTestAppointments frm = new frmListTestAppointments();
+            clsGlobal.TestType = TestType;
+            frm.ShowDialog();
+        }
+
         private void scheduleVisionTestToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
-            int ApplicationID = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
-            frmListTestAppointments frm = new frmListTestAppointments(ApplicationID);
+            clsGlobal.L_DappID = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
+            frmListTestAppointments frm = new frmListTestAppointments();
+            clsGlobal.TestType = "vision";
+            frm.ShowDialog();
+        }
+
+        private void scheduleWrittenTestToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            clsGlobal.L_DappID = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
+            frmListTestAppointments frm = new frmListTestAppointments();
+            clsGlobal.TestType = "Written";
+            frm.ShowDialog();
+        }
+
+        private void scheduleStreetTestToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            clsGlobal.L_DappID = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
+            frmListTestAppointments frm = new frmListTestAppointments();
+            clsGlobal.TestType = "practical";
             frm.ShowDialog();
         }
     }

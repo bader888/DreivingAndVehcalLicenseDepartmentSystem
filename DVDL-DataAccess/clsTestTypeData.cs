@@ -108,6 +108,32 @@ namespace DVDL_DataAccess
             return (rowsAffected > 0);
         }
 
+        public static decimal GetTestTypeFeesByTitle(string Title)
+        {
+            decimal TestTypeFees = -1;
+            SqlConnection connection = new SqlConnection(clsConnectionString.connectionString);
+            string query = @"select TestTypeFees from TestTypes where TestTypeTitle like   '%' + @Title + '%'";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@Title", Title);
 
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null && decimal.TryParse(result.ToString(), out decimal Fess))
+                {
+                    TestTypeFees = Fess;
+                }
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return TestTypeFees;
+        }
     }
 }
