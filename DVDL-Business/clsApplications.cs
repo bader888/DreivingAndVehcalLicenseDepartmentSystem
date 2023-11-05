@@ -162,5 +162,13 @@ namespace DVDL_Business
         {
             return clsApplicationsData.GetAllApplications();
         }
+
+
+        public static decimal GetApplicationTypeFeesByL_DappID(int L_DappID)
+        {
+            return clsApplicationsData.GetApplicationTypeFeesByL_DappID(L_DappID);
+        }
+
+
     }
 }

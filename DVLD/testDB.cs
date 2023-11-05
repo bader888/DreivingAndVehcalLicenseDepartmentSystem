@@ -14,23 +14,33 @@ namespace DVLD
 
         static string connectionString = "Server =.;" + "Database = DVLD;" + "User Id =sa;" + "PassWord=sa123456;";
 
-        public static decimal GetTestTypeFeesByTitle(string Title)
+        public static int GetPersonIDbyHisName(string PersonName)
         {
-            decimal TestTypeFees = -1;
+            int PersonID = -1;
             SqlConnection connection = new SqlConnection(connectionString);
-            string query = @"select TestTypeFees from TestTypes where TestTypeTitle like   '%' + @Title + '%'";
+            string query = @"select PersonID from
+                            (
+                             select  PersonID ,
+                             FirstName +' '+
+                             SecondName +' '+
+                             ThirdName + ''+ 
+                             LastName as fullname 
+                             from People  
+                           )result 
+                             where fullname = @PersonName";
             SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@Title", Title);
+            command.Parameters.AddWithValue("@PersonName", PersonName);
 
             try
             {
                 connection.Open();
                 object result = command.ExecuteScalar();
-                MessageBox.Show(result.ToString());
-                if (result != null && decimal.TryParse(result.ToString(), out decimal fess))
+                //MessageBox.Show(result.ToString());
+                if (result != null && int.TryParse(result.ToString(), out int insertedID))
                 {
-                    TestTypeFees = fess;
+                    PersonID = insertedID;
                 }
+
             }
             catch (Exception ex)
             {
@@ -40,11 +50,12 @@ namespace DVLD
             {
                 connection.Close();
             }
-            return TestTypeFees;
+            return PersonID;
         }
         private void testDB_Load(object sender, System.EventArgs e)
         {
-            MessageBox.Show(GetTestTypeFeesByTitle("vision").ToString());
+            MessageBox.Show(GetPersonIDbyHisName("q q qq").ToString());
+            //MessageBox.Show(clsPerson.GetPersonIDbyHisName("q q q q").ToString());
         }
     }
 }

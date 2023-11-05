@@ -10,6 +10,14 @@ namespace DVLD.UserControls
         {
             InitializeComponent();
         }
+
+        public string ApplicationTypeFees
+        {
+            get
+            {
+                return ctrlApplicationBasicInfo1.ApplicationTypeFees;
+            }
+        }
         public void _ShowDrivingLicenseApplicationInfo(int L_D_appID)
         {
             DataTable dt = clsCtrlDrivingLicenseBasicInfo.GetDrivingLicenseAppInfo(L_D_appID);

@@ -223,7 +223,6 @@
             this.Name = "frmListTestAppointments";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmListTestAppointments";
-            this.Load += new System.EventHandler(this.frmListTestAppointments_Load);
             this.cmsApplications.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLicenseTestAppointments)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbTestTypeImage)).EndInit();

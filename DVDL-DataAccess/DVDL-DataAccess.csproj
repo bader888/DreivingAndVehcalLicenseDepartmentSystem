@@ -63,6 +63,7 @@
     <Compile Include="clsApplicationTypeData.cs" />
     <Compile Include="clsConnectionStringDataAccess.cs" />
     <Compile Include="clsCountriesData.cs" />
+    <Compile Include="clsTestsData.cs" />
     <Compile Include="UserControlData\clsCtrlDrivingLicenseBasicInfoData.cs" />
     <Compile Include="clsLicenseClassesData.cs" />
     <Compile Include="clsLocalDrivingLicenseApplicationsData.cs" />

@@ -9,7 +9,6 @@ namespace DVDL_Business
         public enum enMode { AddNew = 0, Update = 1 };
         public enMode Mode = enMode.AddNew;
 
-
         public int PersonID { set; get; }
         public string NationalNo { set; get; }
         public string FirstName { set; get; }
@@ -150,5 +149,11 @@ namespace DVDL_Business
         {
             return clsPersonData.GetAllPeople();
         }
+
+        static public int GetPersonIDbyHisName(string PersonName)
+        {
+            return clsPersonData.GetPersonIDbyHisName(PersonName);
+        }
+
     }
 }

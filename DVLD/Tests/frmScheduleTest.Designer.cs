@@ -53,6 +53,9 @@
             this.ctrlScechuleTest1.Name = "ctrlScechuleTest1";
             this.ctrlScechuleTest1.Size = new System.Drawing.Size(533, 632);
             this.ctrlScechuleTest1.TabIndex = 0;
+            this.ctrlScechuleTest1.TestappointmentID = 0;
+            this.ctrlScechuleTest1.Title = null;
+            this.ctrlScechuleTest1.UpdateMode = false;
             // 
             // frmScheduleTest
             // 

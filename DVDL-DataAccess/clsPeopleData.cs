@@ -247,5 +247,44 @@ namespace DVDL_DataAccess
 
             return (rowsAffected > 0);
         }
+
+        //new
+        public static int GetPersonIDbyHisName(string PersonName)
+        {
+            int PersonID = -1;
+            SqlConnection connection = new SqlConnection(clsConnectionString.connectionString);
+            string query = @"select PersonID from
+                            (
+                             select  PersonID ,
+                             FirstName +' '+
+                             SecondName +' '+
+                             ThirdName + ' '+ 
+                             LastName as fullname 
+                             from People  
+                           )result 
+                             where fullname = @PersonName";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@PersonName", PersonName);
+
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null && int.TryParse(result.ToString(), out int insertedID))
+                {
+                    PersonID = insertedID;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return PersonID;
+        }
     }
 }

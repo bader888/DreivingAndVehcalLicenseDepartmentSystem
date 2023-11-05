@@ -289,5 +289,48 @@ namespace DVDL_DataAccess
 
             return (rowsAffected > 0);
         }
+
+        public static decimal GetApplicationTypeFeesByL_DappID(int L_DappID)
+        {
+            decimal AppFees = -1;
+            SqlConnection connection = new SqlConnection(clsConnectionString.connectionString);
+            string query = @"select  ApplicationFees 
+                             from
+                             ApplicationTypes 
+                             where ApplicationTypeID = 
+                             ( 
+                               (select ApplicationTypeID from Applications where ApplicationID = 
+                                    (
+                                     select ApplicationID 
+                                     from 
+                                     LocalDrivingLicenseApplications 
+                                     where  
+                                     LocalDrivingLicenseApplicationID = @L_DappID
+                                     )
+                                )
+                             )";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@L_DappID", L_DappID);
+
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null && decimal.TryParse(result.ToString(), out decimal Fess))
+                {
+                    AppFees = Fess;
+                }
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return AppFees;
+        }
+
     }
 }

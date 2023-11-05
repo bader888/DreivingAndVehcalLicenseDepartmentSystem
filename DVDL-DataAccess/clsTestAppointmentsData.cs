@@ -291,6 +291,31 @@ namespace DVDL_DataAccess
             return dt;
         }
 
-
+        public static DataTable GetAllTestAppointments()
+        {
+            DataTable dt = new DataTable();
+            SqlConnection connection = new SqlConnection(clsConnectionString.connectionString);
+            string query = @"select * from TestAppointments_View";
+            SqlCommand command = new SqlCommand(query, connection);
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    dt.Load(reader);
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return dt;
+        }
     }
 }

@@ -48,9 +48,9 @@ namespace DVDL_Business
             Mode = enMode.AddNew;
         }
 
-        public static clsTestAppointments Find(int LocalDrivingLicenseApplicationID)
+        public static clsTestAppointments Find(int TestAppointmentsID)
         {
-            int TestAppointmentsID = -1;
+            int LocalDrivingLicenseApplicationID = -1;
             int TestTypeID = -1;
             DateTime AppointmentDate = DateTime.Now;
             decimal PaidFees = 0;
@@ -145,6 +145,9 @@ namespace DVDL_Business
             return clsTestAppointmentsData.GetTestAppointmentByID(TestAppointmentID);
         }
 
-
+        static public DataTable GetAllTestAppointments()
+        {
+            return clsTestAppointmentsData.GetAllTestAppointments();
+        }
     }
 }
