@@ -94,10 +94,11 @@ namespace DVLD.UserControls
 
         private void _CreateNewTestAppointment()
         {
+            int TestTypeID = clsTestType.GetTestTypeIDbyTestTitle(clsGlobal.TestType);
             testAppointments.IsLocked = false;
             testAppointments.LocalDrivingLicenseApplicationID = int.Parse(lblLocalDrivingLicenseAppID.Text);
             testAppointments.PaidFees = decimal.Parse(lblFees.Text);
-            testAppointments.TestTypeID = 1;
+            testAppointments.TestTypeID = TestTypeID;
             testAppointments.AppointmentDate = dtpTestDate.Value;
             testAppointments.CreatedByUserID = clsGlobal.CurrentUser.UserID;
         }

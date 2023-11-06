@@ -135,5 +135,35 @@ namespace DVDL_DataAccess
             }
             return TestTypeFees;
         }
+
+        public static int GetTestTypeIDbyTestTitle(string TestTitle)
+        {
+            int TestTypeFees = -1;
+            SqlConnection connection = new SqlConnection(clsConnectionString.connectionString);
+            string query = @"select TestTypeID from TestTypes where TestTypeTitle like   '%' + @TestTitle + '%'";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@TestTitle", TestTitle);
+
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null && int.TryParse(result.ToString(), out int Fess))
+                {
+                    TestTypeFees = Fess;
+                }
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return TestTypeFees;
+        }
+
+
     }
 }

@@ -18,6 +18,14 @@ namespace DVLD.UserControls
                 return ctrlApplicationBasicInfo1.ApplicationTypeFees;
             }
         }
+
+        public string ApplicantFullName
+        {
+            get
+            {
+                return ctrlApplicationBasicInfo1.ApplicantFullName;
+            }
+        }
         public void _ShowDrivingLicenseApplicationInfo(int L_D_appID)
         {
             DataTable dt = clsCtrlDrivingLicenseBasicInfo.GetDrivingLicenseAppInfo(L_D_appID);

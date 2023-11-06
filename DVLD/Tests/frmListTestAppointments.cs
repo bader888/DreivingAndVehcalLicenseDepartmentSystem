@@ -54,11 +54,6 @@ namespace DVLD.Tests
             dgvLicenseTestAppointments.DataSource = clsTestAppointments.GetTestAppointmentForSpecificTest(clsGlobal.L_DappID, clsGlobal.TestType);
         }
 
-        private void ctrlDrivingLicenseApplicationInfo1_Load(object sender, EventArgs e)
-        {
-            lblTitle.Text = clsGlobal.TestType + " test" + " appointment";
-            _ShowTestAppointment();
-        }
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -76,6 +71,12 @@ namespace DVLD.Tests
             frm.DataBack += _ShowTestAppointment;
             frm.ShowDialog();
 
+        }
+
+        private void frmListTestAppointments_Load(object sender, EventArgs e)
+        {
+            lblTitle.Text = clsGlobal.TestType + " test" + " appointment";
+            _ShowTestAppointment();
         }
     }
 }

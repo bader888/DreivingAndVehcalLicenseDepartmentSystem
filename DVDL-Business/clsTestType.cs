@@ -65,6 +65,11 @@ namespace DVDL_Business
         {
             return clsTestTypeData.GetTestTypeFeesByTitle(Title);
         }
+        public static int GetTestTypeIDbyTestTitle(string TestTitle)
+        {
+            return clsTestTypeData.GetTestTypeIDbyTestTitle(TestTitle);
+        }
+
 
     }
 }

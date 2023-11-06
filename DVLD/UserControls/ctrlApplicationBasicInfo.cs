@@ -20,6 +20,13 @@ namespace DVLD.UserControls
                 return lblFees.Text;
             }
         }
+        public string ApplicantFullName
+        {
+            get
+            {
+                return lblApplicant.Text;
+            }
+        }
 
         public void _ShowBasicApplicationInfo(int L_D_appID)
         {
