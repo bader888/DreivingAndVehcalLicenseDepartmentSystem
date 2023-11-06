@@ -82,9 +82,9 @@ namespace DVDL_Business
             }
             return false;
         }
-        public static bool isDriversExist(int ID)
+        public static bool IsPersonAsDriver(int PersonID)
         {
-            return clsDriversData.IsDriversExist(ID);
+            return clsDriversData.IsPersonAsDriver(PersonID);
         }
         public DataTable GetAllDrivers()
         {

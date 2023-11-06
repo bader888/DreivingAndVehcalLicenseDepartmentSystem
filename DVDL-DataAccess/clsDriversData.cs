@@ -84,14 +84,14 @@ namespace DVDL_DataAccess
             }
             return dt;
         }
-        public static bool IsDriversExist(int DriverID)
+        public static bool IsPersonAsDriver(int PersonID)
         {
             bool isFound = false;
 
             SqlConnection connection = new SqlConnection(clsConnectionString.connectionString);
-            string query = "SELECT Found=1 FROM  Drivers  where DriverID = @DriverID";
+            string query = "SELECT Found=1 FROM  Drivers  where PersonID = @PersonID";
             SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@DriverID", DriverID);
+            command.Parameters.AddWithValue("@PersonID", PersonID);
 
             try
             {

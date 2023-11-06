@@ -14,8 +14,7 @@ namespace DVLD
 
         private void testDB_Load(object sender, System.EventArgs e)
         {
-            //MessageBox.Show(clsTestType.GetTestTypeIDby("vision").ToString());
-            //MessageBox.Show(clsPerson.GetPersonIDbyHisName("q q q q").ToString());
+
         }
     }
 }
