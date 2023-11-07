@@ -7,7 +7,6 @@ namespace DVDL_DataAccess
     public class clsPersonData
     {
 
-
         public static int AddNewPerson(string NationalNo, string FirstName, string SecondName, string ThirdName, string LastName, DateTime DateOfBirth, int Gendor, string Address, string Phone, string Email, int NationalityCountryID, string ImagePath)
         {
             int PersonID = -1;
@@ -265,6 +264,40 @@ namespace DVDL_DataAccess
                              where fullname = @PersonName";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@PersonName", PersonName);
+
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null && int.TryParse(result.ToString(), out int insertedID))
+                {
+                    PersonID = insertedID;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return PersonID;
+        }
+
+        public static int GetPersonIDByL_DappID(int L_DappID)
+        {
+            int PersonID = -1;
+            SqlConnection connection = new SqlConnection(clsConnectionString.connectionString);
+            string query = @" select * from People where PersonID
+                             = ( 
+                             select  ApplicantPersonID from Applications where ApplicationID = 
+                             (select ApplicationID from
+                             LocalDrivingLicenseApplications where LocalDrivingLicenseApplicationID = @L_DappID )
+                             )";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@L_DappID", L_DappID);
 
             try
             {

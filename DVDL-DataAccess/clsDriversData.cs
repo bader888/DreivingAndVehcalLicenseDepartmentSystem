@@ -36,6 +36,7 @@ namespace DVDL_DataAccess
             }
             return DriversID;
         }
+
         public static bool DeleteDrivers(int DriverID)
         {
             int rowsAffected = 0;
@@ -58,6 +59,7 @@ namespace DVDL_DataAccess
             }
             return (rowsAffected > 0);
         }
+
         public static DataTable GetAllDrivers()
         {
             DataTable dt = new DataTable();
@@ -84,6 +86,7 @@ namespace DVDL_DataAccess
             }
             return dt;
         }
+
         public static bool IsPersonAsDriver(int PersonID)
         {
             bool isFound = false;
@@ -114,6 +117,7 @@ namespace DVDL_DataAccess
 
             return isFound;
         }
+
         public static bool GetDriversInfoByID(ref int DriverID, ref int PersonID, ref int CreatedByUserID, ref DateTime CreatedDate)
         {
             bool isFound = false;
@@ -155,6 +159,7 @@ namespace DVDL_DataAccess
 
             return isFound;
         }
+
         public static bool UpdateDrivers(int DriverID, int PersonID, int CreatedByUserID, DateTime CreatedDate)
         {
             int rowsAffected = 0;
@@ -184,6 +189,35 @@ namespace DVDL_DataAccess
             }
 
             return (rowsAffected > 0);
+        }
+
+        public static int GetDriverIDByHisName(string DriverName)
+        {
+            int DriverID = -1;
+            SqlConnection connection = new SqlConnection(clsConnectionString.connectionString);
+            string query = @" select  DriverID  from Drivers_View where FullName = @DriverName";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@DriverName", DriverName);
+
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null && int.TryParse(result.ToString(), out int insertedID))
+                {
+                    DriverID = insertedID;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return DriverID;
         }
     }
 }

@@ -88,8 +88,11 @@ namespace DVLD.ManageApplications
                 scheduleVisionTestToolStripMenuItem.Enabled = true;
                 scheduleWrittenTestToolStripMenuItem.Enabled = true;
                 ScheduleTestsMenue.Enabled = true;
-                issueDrivingLicenseFirstTimeToolStripMenuItem.Enabled = false;
-
+                issueDrivingLicenseFirstTimeToolStripMenuItem.Enabled = true;
+                DeleteApplicationToolStripMenuItem.Enabled = true;
+                CancelApplicaitonToolStripMenuItem.Enabled = true;
+                editToolStripMenuItem.Enabled = true;
+                ScheduleTestsMenue.Enabled = true;
 
                 switch (PassedTestCount)
                 {
@@ -130,6 +133,29 @@ namespace DVLD.ManageApplications
             clsGlobal.L_DappID = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
             frmShowLicense frm = new frmShowLicense();
             frm.Show();
+        }
+
+        private void DeleteApplicationToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            clsGlobal.L_DappID = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
+            DialogResult result = MessageBox.Show("Are you sure you want to delete this application?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                if (clsLocalDrivingLicenseApplications.DeleteLocalDrivingLicenseApplications(clsGlobal.L_DappID))
+                {
+                    MessageBox.Show("Delete Done");
+                    _ShowAllL_D_Lapps();
+                }
+                else
+                    MessageBox.Show("You Can't Delete This Application!");
+            }
+        }
+
+        private void showPersonLicenseHistoryToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            clsGlobal.L_DappID = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
+            frmPersonLicenseshistory frm = new frmPersonLicenseshistory();
+            frm.ShowDialog();
         }
     }
 

@@ -155,5 +155,10 @@ namespace DVDL_Business
             return clsPersonData.GetPersonIDbyHisName(PersonName);
         }
 
+        public static int GetPersonIDByL_DappID(int L_DappID)
+        {
+            return clsPersonData.GetPersonIDByL_DappID(L_DappID);
+        }
+
     }
 }

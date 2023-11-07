@@ -56,6 +56,20 @@ namespace DVLD.License
             return license;
         }
 
+        private void _AddNewLicenseForDriver()
+        {
+            int DriverID = clsDrivers.GetDriverIDByHisName(ctrlDrivingLicenseApplicationInfo1.ApplicantFullName);
+            clsLicense license = _CreateNewLicense(DriverID);
+            if (license.Save())
+            {
+                MessageBox.Show("the License Add Successfully with ID = " + license.LicenseID);
+                //update the status of application ==> Completed
+                clsApplications.UpdateApplicationStatus(clsGlobal.L_DappID, 3);
+
+            }
+            else
+                MessageBox.Show("Faild To Add New License");
+        }
         private void btnIssueLicense_Click(object sender, EventArgs e)
         {
 
@@ -63,6 +77,7 @@ namespace DVLD.License
             {
                 MessageBox.Show("person as Driver Exists you can't add it to driver table!");
 
+                _AddNewLicenseForDriver();
             }
             else
             {

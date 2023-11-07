@@ -42,9 +42,9 @@ namespace DVDL_DataAccess
         {
             int rowsAffected = 0;
             SqlConnection connection = new SqlConnection(clsConnectionString.connectionString);
-            string query = @"Delete LocalDrivingLicenseApplications where LocalDrivingLicenseApplicationID = @ID";
+            string query = @"Delete LocalDrivingLicenseApplications where LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID";
             SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@ID", LocalDrivingLicenseApplicationID);
+            command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
             try
             {
                 connection.Open();
@@ -190,5 +190,53 @@ namespace DVDL_DataAccess
             return (rowsAffected > 0);
         }
 
+
+        public static DataTable GetPersonLocalDrivingLicenseApplications(int L_DappID)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection connection = new SqlConnection(clsConnectionString.connectionString);
+            string query = @"
+                            select  
+                            LicenseID,
+                            ApplicationID,
+                            ClassName,
+                            IssueDate,
+                            ExpirationDate,
+                            IsActive 
+                            from 
+                            (
+                             SELECT Licenses.*, LicenseClasses.ClassName
+                            FROM Licenses INNER JOIN
+                             LicenseClasses ON Licenses.LicenseClass = LicenseClasses.LicenseClassID 
+                             )result 
+                             where DriverID in
+                            (select DriverID from Licenses 
+                            where ApplicationID in (
+                            select ApplicationID 
+                            from LocalDrivingLicenseApplications 
+                            where LocalDrivingLicenseApplicationID = @L_DappID
+                            ))";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@L_DappID", L_DappID);
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    dt.Load(reader);
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return dt;
+        }
     }
 }

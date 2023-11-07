@@ -81,9 +81,9 @@ namespace DVDL_Business
             return clsLocalDrivingLicenseApplicationsData.UpdateLocalDrivingLicenseApplications(this.LocalDrivingLicenseApplicationID, this.ApplicationID, this.LicenseClassID);
         }
 
-        public static bool DeleteLocalDrivingLicenseApplications(int ID)
+        public static bool DeleteLocalDrivingLicenseApplications(int L_DappID)
         {
-            return clsLocalDrivingLicenseApplicationsData.DeleteLocalDrivingLicenseApplications(ID);
+            return clsLocalDrivingLicenseApplicationsData.DeleteLocalDrivingLicenseApplications(L_DappID);
         }
 
         public bool Save()
@@ -114,6 +114,11 @@ namespace DVDL_Business
             return clsLocalDrivingLicenseApplicationsData.GetAllLocalDrivingLicenseApplications();
         }
 
+
+        static public DataTable GetPersonLocalDrivingLicenseApplications(int L_DappID)
+        {
+            return clsLocalDrivingLicenseApplicationsData.GetPersonLocalDrivingLicenseApplications(L_DappID);
+        }
     }
 
 }

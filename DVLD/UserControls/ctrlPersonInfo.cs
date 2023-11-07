@@ -48,8 +48,6 @@ namespace DVLD
                 lblGender.Text = "Male";
         }
 
-
-
         private void linkEditPersonInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             frmAddEditePerson addEditePerson = new frmAddEditePerson(person.PersonID);
