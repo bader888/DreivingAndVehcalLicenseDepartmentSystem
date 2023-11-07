@@ -14,9 +14,9 @@ namespace DVLD.Tests
         }
 
         public int TestAppointmentID { get; set; }
+
         private void _LockedTheTest()
         {
-
             clsTestAppointments testAppointment = clsTestAppointments.Find(this.TestAppointmentID);
             testAppointment.IsLocked = true;
             testAppointment.Save();
@@ -36,7 +36,6 @@ namespace DVLD.Tests
 
         private void btnSave_Click_1(object sender, System.EventArgs e)
         {
-
 
             clsTests Test = new clsTests();
             Test.TestAppointmentID = this.TestAppointmentID;

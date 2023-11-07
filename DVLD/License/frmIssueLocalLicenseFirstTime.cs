@@ -37,7 +37,7 @@ namespace DVLD.License
 
         }
 
-        private clsLicense _CreateNewLicense()
+        private clsLicense _CreateNewLicense(int DriverID)
         {
             DataRow rNewLicenseInfo = _GetInfoForNewLicens();
 
@@ -47,7 +47,7 @@ namespace DVLD.License
             license.IssueReason = 1; //1 = first time
             license.Notes = txtNotes.Text;
             license.IsActive = true;
-            license.DriverID = 8;
+            license.DriverID = DriverID;
             license.ApplicationID = (int)rNewLicenseInfo["applicationid"];
             license.PaidFees = (decimal)rNewLicenseInfo["classfees"];
             license.LicenseClass = (int)rNewLicenseInfo["licenseclassid"];
@@ -70,10 +70,15 @@ namespace DVLD.License
 
                 if (driver.Save())
                 {
-                    clsLicense license = _CreateNewLicense();
+                    clsLicense license = _CreateNewLicense(driver.DriverID);
 
                     if (license.Save())
+                    {
                         MessageBox.Show("the License Add Successfully with ID = " + license.LicenseID);
+                        //update the status of application ==> Completed
+                        clsApplications.UpdateApplicationStatus(clsGlobal.L_DappID, 3);
+
+                    }
                     else
                         MessageBox.Show("Faild To Add New License");
                 }

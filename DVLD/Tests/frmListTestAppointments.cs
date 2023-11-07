@@ -7,6 +7,8 @@ namespace DVLD.Tests
 {
     public partial class frmListTestAppointments : Form
     {
+        public delegate void DataBackEventHandler();
+        public event DataBackEventHandler DataBack;
 
         public frmListTestAppointments()
         {
@@ -42,8 +44,8 @@ namespace DVLD.Tests
             {
                 frm.ReTakeTest = true;
             }
-
             frm.UpdateMode = false;
+            frm.DataBack += _ShowTestAppointment;
             frm.ShowDialog();
 
         }
@@ -53,7 +55,6 @@ namespace DVLD.Tests
             ctrlDrivingLicenseApplicationInfo1._ShowDrivingLicenseApplicationInfo(clsGlobal.L_DappID);
             dgvLicenseTestAppointments.DataSource = clsTestAppointments.GetTestAppointmentForSpecificTest(clsGlobal.L_DappID, clsGlobal.TestType);
         }
-
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {

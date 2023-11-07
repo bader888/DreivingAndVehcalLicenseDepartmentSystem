@@ -81,11 +81,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UserControls\ctrlShowLicenseInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ctrlShowLicenseInfo.Designer.cs">
+      <DependentUpon>ctrlShowLicenseInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="License\frmIssueLocalLicenseFirstTime.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="License\frmIssueLocalLicenseFirstTime.Designer.cs">
       <DependentUpon>frmIssueLocalLicenseFirstTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="License\frmShowLicense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="License\frmShowLicense.Designer.cs">
+      <DependentUpon>frmShowLicense.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\frmLogin.cs">
       <SubType>Form</SubType>
@@ -246,8 +258,14 @@
     <Compile Include="Users\frmUserInfo.Designer.cs">
       <DependentUpon>frmUserInfo.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UserControls\ctrlShowLicenseInfo.resx">
+      <DependentUpon>ctrlShowLicenseInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="License\frmIssueLocalLicenseFirstTime.resx">
       <DependentUpon>frmIssueLocalLicenseFirstTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="License\frmShowLicense.resx">
+      <DependentUpon>frmShowLicense.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>

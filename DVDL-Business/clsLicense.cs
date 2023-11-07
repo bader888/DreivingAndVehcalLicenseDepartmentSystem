@@ -130,9 +130,17 @@ namespace DVDL_Business
             return clsLicenseData.GetAllLicenses();
         }
 
+        //new
         public static DataTable GetInfoForNewLicensebyL_DappID(int L_DappID)
         {
             return clsLicenseData.GetInfoForNewLicensebyL_DappID(L_DappID);
         }
+
+        public static DataTable GetLicenseInfobyL_DappID(int L_DappID)
+        {
+            return clsLicenseData.GetLicenseInfobyL_DappID(L_DappID);
+        }
+
+
     }
 }

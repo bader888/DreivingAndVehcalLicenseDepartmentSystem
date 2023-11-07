@@ -43,7 +43,6 @@ namespace DVDL_Business
                 return null;
         }
 
-
         private bool _UpdateApplicationTypes()
         {
             return clsApplicationTypeData.UpdateApplicationTypes(this.ApplicationTypeID, this.ApplicationTypeTitle, this.ApplicationFees);

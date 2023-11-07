@@ -15,7 +15,7 @@ namespace DVLD
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmLogin());
             //
-            //Application.Run(new testDB()); 
+            //Application.Run(new testDB());
         }
     }
 }

@@ -22,7 +22,6 @@ namespace DVLD.ManageApplications
         private void _ShowAllL_D_Lapps()
         {
             dataGridView1.DataSource = clsLocalDrivingLicenseApplications.GetAllLocalDrivingLicenseApplications();
-
         }
 
         private void frmLocalDrivingLicenseApplications_Load(object sender, System.EventArgs e)
@@ -50,6 +49,7 @@ namespace DVLD.ManageApplications
             frmListTestAppointments frm = new frmListTestAppointments();
             clsGlobal.TestType = "vision";
             frm.ShowDialog();
+            frm.DataBack += _ShowAllL_D_Lapps;
         }
 
         private void scheduleWrittenTestToolStripMenuItem_Click(object sender, System.EventArgs e)
@@ -71,41 +71,51 @@ namespace DVLD.ManageApplications
         //not completed
         private void cmsApplications_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            int PassedTestCount = int.Parse(dataGridView1.SelectedCells[5].Value.ToString());
-            scheduleVisionTestToolStripMenuItem.Enabled = true;
-            scheduleWrittenTestToolStripMenuItem.Enabled = true;
-            ScheduleTestsMenue.Enabled = true;
-            issueDrivingLicenseFirstTimeToolStripMenuItem.Enabled = false;
-
-            switch (PassedTestCount)
+            string Status = dataGridView1.SelectedCells[6].Value.ToString();
+            if (Status == "Completed")
             {
-                case (int)enPassedTest.vision:
-                    {
-                        scheduleVisionTestToolStripMenuItem.Enabled = false;
-                        break;
-                    }
-                case (int)enPassedTest.Written:
-                    {
-                        scheduleVisionTestToolStripMenuItem.Enabled = false;
-                        scheduleWrittenTestToolStripMenuItem.Enabled = false;
-                        break;
-                    }
-                case (int)enPassedTest.Partical:
-                    {
-                        ScheduleTestsMenue.Enabled = false;
-                        issueDrivingLicenseFirstTimeToolStripMenuItem.Enabled = true;
-                        break;
-                    }
-                default:
-                    {
-                        break;
-                    }
+                scheduleVisionTestToolStripMenuItem.Enabled = false;
+                scheduleWrittenTestToolStripMenuItem.Enabled = false;
+                ScheduleTestsMenue.Enabled = false;
+                issueDrivingLicenseFirstTimeToolStripMenuItem.Enabled = false;
+                DeleteApplicationToolStripMenuItem.Enabled = false;
+                CancelApplicaitonToolStripMenuItem.Enabled = false;
+                editToolStripMenuItem.Enabled = false;
             }
-        }
+            else
+            {
+                int PassedTestCount = int.Parse(dataGridView1.SelectedCells[5].Value.ToString());
+                scheduleVisionTestToolStripMenuItem.Enabled = true;
+                scheduleWrittenTestToolStripMenuItem.Enabled = true;
+                ScheduleTestsMenue.Enabled = true;
+                issueDrivingLicenseFirstTimeToolStripMenuItem.Enabled = false;
 
-        private void ScheduleTestsMenue_Click(object sender, System.EventArgs e)
-        {
 
+                switch (PassedTestCount)
+                {
+                    case (int)enPassedTest.vision:
+                        {
+                            scheduleVisionTestToolStripMenuItem.Enabled = false;
+                            break;
+                        }
+                    case (int)enPassedTest.Written:
+                        {
+                            scheduleVisionTestToolStripMenuItem.Enabled = false;
+                            scheduleWrittenTestToolStripMenuItem.Enabled = false;
+                            break;
+                        }
+                    case (int)enPassedTest.Partical:
+                        {
+                            ScheduleTestsMenue.Enabled = false;
+                            issueDrivingLicenseFirstTimeToolStripMenuItem.Enabled = true;
+                            break;
+                        }
+                    default:
+                        {
+                            break;
+                        }
+                }
+            }
         }
 
         private void issueDrivingLicenseFirstTimeToolStripMenuItem_Click(object sender, System.EventArgs e)
@@ -113,8 +123,14 @@ namespace DVLD.ManageApplications
             clsGlobal.L_DappID = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
             frmIssueLocalLicenseFirstTime frm = new frmIssueLocalLicenseFirstTime();
             frm.ShowDialog();
+        }
 
-
+        private void showLicenseToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            clsGlobal.L_DappID = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
+            frmShowLicense frm = new frmShowLicense();
+            frm.Show();
         }
     }
+
 }

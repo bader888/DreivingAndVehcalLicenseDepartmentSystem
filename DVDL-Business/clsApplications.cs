@@ -169,6 +169,9 @@ namespace DVDL_Business
             return clsApplicationsData.GetApplicationTypeFeesByL_DappID(L_DappID);
         }
 
-
+        public static bool UpdateApplicationStatus(int L_DappID, int StatusNumber)
+        {
+            return clsApplicationsData.UpdateApplicationStatus(L_DappID, StatusNumber);
+        }
     }
 }

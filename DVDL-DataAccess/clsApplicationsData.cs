@@ -332,5 +332,39 @@ namespace DVDL_DataAccess
             return AppFees;
         }
 
+        public static bool UpdateApplicationStatus(int L_DappID, int StatusNumber)
+        {
+            int rowsAffected = 0;
+            SqlConnection connection = new SqlConnection(clsConnectionString.connectionString);
+
+            string query = @"update Applications 
+                            set ApplicationStatus = @StatusNumber
+                            where ApplicationID = (select ApplicationID from LocalDrivingLicenseApplications
+                            where LocalDrivingLicenseApplicationID = @L_DappID)";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@StatusNumber", StatusNumber);
+            command.Parameters.AddWithValue("@L_DappID", L_DappID);
+
+
+            try
+            {
+                connection.Open();
+                rowsAffected = command.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine("Error: " + ex.Message);
+                return false;
+            }
+
+            finally
+            {
+                connection.Close();
+            }
+
+            return (rowsAffected > 0);
+        }
+
     }
 }

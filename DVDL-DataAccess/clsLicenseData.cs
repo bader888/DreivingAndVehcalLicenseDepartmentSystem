@@ -206,7 +206,6 @@ namespace DVDL_DataAccess
             return (rowsAffected > 0);
         }
 
-
         public static DataTable GetInfoForNewLicensebyL_DappID(int L_DappID)
         {
             DataTable dt = new DataTable();
@@ -245,5 +244,62 @@ namespace DVDL_DataAccess
             }
             return dt;
         }
+
+        public static DataTable GetLicenseInfobyL_DappID(int L_DappID)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection connection = new SqlConnection(clsConnectionString.connectionString);
+            string query = @"select * from 
+                            ( 
+                            SELECT Licenses.LicenseID,
+                            Licenses.ApplicationID,
+                            Licenses.IssueDate, 
+                            Licenses.Notes,
+                            Licenses.ExpirationDate, 
+                            Licenses.IsActive, 
+                            Licenses.DriverID,
+                            Licenses.IssueReason, 
+                            People.NationalNo, 
+                            People.FirstName +' '+
+                            People.SecondName +' '+ 
+                            People.ThirdName +' '+
+                            People.LastName as FullName,
+                            People.DateOfBirth, 
+                            People.Gendor,
+                            People.ImagePath,
+                            LicenseClasses.ClassName
+                           FROM Licenses INNER JOIN
+                            Drivers ON Licenses.DriverID = Drivers.DriverID INNER JOIN
+                            People ON Drivers.PersonID = People.PersonID INNER JOIN
+                            LicenseClasses ON Licenses.LicenseClass = LicenseClasses.LicenseClassID
+                            )Result
+                            where LicenseID = (select LicenseID from Licenses  where  ApplicationID  = 
+                           (select  ApplicationID from LocalDrivingLicenseApplications where LocalDrivingLicenseApplicationID = @L_DappID))
+                           ";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@L_DappID", L_DappID);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    dt.Load(reader);
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return dt;
+
+        }
+
     }
 }

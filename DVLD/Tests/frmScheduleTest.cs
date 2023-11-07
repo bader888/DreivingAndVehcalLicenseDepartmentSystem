@@ -22,6 +22,7 @@ namespace DVLD.Tests
 
         private void btnClose_Click(object sender, System.EventArgs e)
         {
+            DataBack?.Invoke();
             this.Close();
         }
 
@@ -34,7 +35,7 @@ namespace DVLD.Tests
             ctrlScechuleTest1.Title = "Schedule " + clsGlobal.TestType + " Test";
             //image for the test 
             ctrlScechuleTest1.ShowScheduleTestInfo();
-            DataBack?.Invoke();
+
         }
 
 
