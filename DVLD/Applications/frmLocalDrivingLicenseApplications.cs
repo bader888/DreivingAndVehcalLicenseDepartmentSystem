@@ -100,8 +100,9 @@ namespace DVLD.ManageApplications
             clsGlobal.L_DappID = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
             frmListTestAppointments frm = new frmListTestAppointments();
             clsGlobal.TestType = "vision";
-            frm.ShowDialog();
             frm.DataBack += _ShowAllL_D_Lapps;
+            frm.ShowDialog();
+
         }
 
         private void scheduleWrittenTestToolStripMenuItem_Click(object sender, System.EventArgs e)
@@ -109,6 +110,7 @@ namespace DVLD.ManageApplications
             clsGlobal.L_DappID = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
             frmListTestAppointments frm = new frmListTestAppointments();
             clsGlobal.TestType = "Written";
+            frm.DataBack += _ShowAllL_D_Lapps;
             frm.ShowDialog();
         }
 
@@ -117,6 +119,7 @@ namespace DVLD.ManageApplications
             clsGlobal.L_DappID = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
             frmListTestAppointments frm = new frmListTestAppointments();
             clsGlobal.TestType = "practical";
+            frm.DataBack += _ShowAllL_D_Lapps;
             frm.ShowDialog();
         }
 
@@ -124,6 +127,7 @@ namespace DVLD.ManageApplications
         {
             clsGlobal.L_DappID = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
             frmIssueLocalLicenseFirstTime frm = new frmIssueLocalLicenseFirstTime();
+            frm.DataBack += _ShowAllL_D_Lapps;
             frm.ShowDialog();
         }
 
@@ -200,6 +204,8 @@ namespace DVLD.ManageApplications
                 _ShowAllL_D_Lapps();
             }
         }
+
+
     }
 
 }

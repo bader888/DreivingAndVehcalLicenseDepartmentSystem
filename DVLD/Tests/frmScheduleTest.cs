@@ -22,7 +22,6 @@ namespace DVLD.Tests
 
         private void btnClose_Click(object sender, System.EventArgs e)
         {
-            DataBack?.Invoke();
             this.Close();
         }
 
@@ -33,11 +32,15 @@ namespace DVLD.Tests
             ctrlScechuleTest1.UpdateMode = this.UpdateMode;
             ctrlScechuleTest1.TestappointmentID = this.TestAppointmentID;
             ctrlScechuleTest1.Title = "Schedule " + clsGlobal.TestType + " Test";
-            //image for the test 
+            //image for the test -->not completed
             ctrlScechuleTest1.ShowScheduleTestInfo();
 
         }
 
+        private void ctrlScechuleTest1_OnAppointmentSave(int obj)
+        {
+            DataBack?.Invoke();
 
+        }
     }
 }

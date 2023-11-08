@@ -7,6 +7,17 @@ namespace DVLD.UserControls
 {
     public partial class ctrlScechuleTest : UserControl
     {
+
+        public event Action<int> OnAppointmentSave;
+        // Create a protected method to raise the event with a parameter
+        protected virtual void AppointmentSave(int AppointmentID)
+        {
+            Action<int> handler = OnAppointmentSave;
+            if (handler != null)
+            {
+                handler(AppointmentID); // Raise the event with the parameter
+            }
+        }
         enum enApplicationStatus
         {
             New = 1,
@@ -132,15 +143,20 @@ namespace DVLD.UserControls
                 _CreateNewApplication();
                 if (application.Save())
                 {
-                    _CreateNewLocalDrivingLicenseApp();
-                    localDrivingLicenseApplications.Save();
+                    //_CreateNewLocalDrivingLicenseApp();
+                    //localDrivingLicenseApplications.Save();
                 }
             }
             if (testAppointments.Save())
+            {
                 MessageBox.Show("Test Appointment Save Sccessfully");
+                if (OnAppointmentSave != null)
+                    // Raise the event with a parameter
+                    AppointmentSave(testAppointments.TestAppointmentID);
+
+            }
             else
                 MessageBox.Show("faild");
-
         }
 
     }

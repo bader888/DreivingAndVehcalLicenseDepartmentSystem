@@ -7,8 +7,11 @@ namespace DVLD.License
 {
     public partial class frmIssueLocalLicenseFirstTime : Form
     {
+        public delegate void DataBackEventHandler();
+        public event DataBackEventHandler DataBack;
 
         int PersonID = -1;
+
         public frmIssueLocalLicenseFirstTime()
         {
             InitializeComponent();
@@ -65,6 +68,8 @@ namespace DVLD.License
                 MessageBox.Show("the License Add Successfully with ID = " + license.LicenseID);
                 //update the status of application ==> Completed
                 clsApplications.UpdateApplicationStatus(clsGlobal.L_DappID, 3);
+                DataBack.Invoke();
+
 
             }
             else
@@ -108,6 +113,7 @@ namespace DVLD.License
         private void btnClose_Click_1(object sender, EventArgs e)
         {
             this.Close();
+
         }
     }
 }

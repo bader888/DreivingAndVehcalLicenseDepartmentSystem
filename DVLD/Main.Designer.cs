@@ -61,10 +61,10 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripDropDownButton2,
             this.toolStripButton3,
+            this.toolStripButton4,
             this.toolStripButton1,
             this.toolStripButton2,
-            this.toolStripDropDownButton1,
-            this.toolStripButton4});
+            this.toolStripDropDownButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(0);

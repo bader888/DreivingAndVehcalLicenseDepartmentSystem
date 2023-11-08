@@ -8,6 +8,8 @@ namespace DVLD.Tests
     public partial class frmListTestAppointments : Form
     {
         public delegate void DataBackEventHandler();
+
+        // Declare an event using the delegate
         public event DataBackEventHandler DataBack;
 
         public frmListTestAppointments()
@@ -18,6 +20,8 @@ namespace DVLD.Tests
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+            DataBack.Invoke();
+
         }
 
         private void btnAddNewAppointment_Click(object sender, EventArgs e)
@@ -47,9 +51,9 @@ namespace DVLD.Tests
             frm.UpdateMode = false;
             frm.DataBack += _ShowTestAppointment;
             frm.ShowDialog();
-
         }
 
+        //call this function 
         private void _ShowTestAppointment()
         {
             ctrlDrivingLicenseApplicationInfo1._ShowDrivingLicenseApplicationInfo(clsGlobal.L_DappID);
