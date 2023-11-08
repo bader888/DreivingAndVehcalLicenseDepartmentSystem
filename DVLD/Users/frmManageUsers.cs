@@ -11,19 +11,22 @@ namespace DVLD.Users
         {
             InitializeComponent();
         }
-
+        DataTable _AllUsers;
         private void _ShowFilterItem(DataTable AllUsers)
         {
+            comboBoxFilters.Items.Clear();
             foreach (DataColumn column in AllUsers.Columns)
             {
                 comboBoxFilters.Items.Add(column.ToString());
                 comboBoxFilters.SelectedItem = comboBoxFilters.Items[0];
             }
+            comboBoxFilters.SelectedIndex = 3;//UserName
+
         }
 
         private void _ShowAllUser()
         {
-            DataTable _AllUsers = clsUsers.GetAllusers();
+            _AllUsers = clsUsers.GetAllusers();
             dataGridView1.DataSource = _AllUsers;
             _ShowFilterItem(_AllUsers);
 
@@ -84,6 +87,28 @@ namespace DVLD.Users
             int UserID = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
             frmChangePassword changePassword = new frmChangePassword(UserID);
             changePassword.ShowDialog();
+        }
+
+        private void txtFilter_TextChanged(object sender, EventArgs e)
+        {
+
+            if (string.IsNullOrEmpty(txtSearch.Text))
+            {
+                _ShowAllUser();
+                return;
+            }
+
+            if (_AllUsers != null)
+            {
+                // Get the filter criteria from a TextBox or another control
+                string filterCriteria = txtSearch.Text;
+
+                // Apply the filter to the DataTable
+                _AllUsers.DefaultView.RowFilter = $"UserName LIKE '%{filterCriteria}%'";
+
+                // Refresh the DataGridView to display the filtered results
+                dataGridView1.Refresh();
+            }
         }
     }
 }

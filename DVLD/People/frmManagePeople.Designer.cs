@@ -45,7 +45,7 @@
             this.lblRecords = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBoxFilters = new System.Windows.Forms.ComboBox();
             this.txtFilter = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -192,13 +192,13 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "Filter By :";
             // 
-            // comboBox1
+            // comboBoxFilters
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(97, 189);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 24);
-            this.comboBox1.TabIndex = 8;
+            this.comboBoxFilters.FormattingEnabled = true;
+            this.comboBoxFilters.Location = new System.Drawing.Point(97, 189);
+            this.comboBoxFilters.Name = "comboBoxFilters";
+            this.comboBoxFilters.Size = new System.Drawing.Size(121, 24);
+            this.comboBoxFilters.TabIndex = 8;
             // 
             // txtFilter
             // 
@@ -206,7 +206,7 @@
             this.txtFilter.Name = "txtFilter";
             this.txtFilter.Size = new System.Drawing.Size(166, 23);
             this.txtFilter.TabIndex = 9;
-            this.txtFilter.Visible = false;
+            this.txtFilter.TextChanged += new System.EventHandler(this.txtFilter_TextChanged);
             // 
             // dataGridView1
             // 
@@ -233,7 +233,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1311, 565);
             this.Controls.Add(this.txtFilter);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.comboBoxFilters);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.lblRecords);
@@ -273,7 +273,7 @@
         private System.Windows.Forms.ToolStripMenuItem sendEmailToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem personCallToolStripMenuItem;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBoxFilters;
         private System.Windows.Forms.TextBox txtFilter;
         private System.Windows.Forms.DataGridView dataGridView1;
     }

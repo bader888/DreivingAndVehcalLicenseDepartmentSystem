@@ -11,7 +11,7 @@ namespace DVLD
         {
             InitializeComponent();
         }
-
+        DataTable dtPeople;
         private int GetNumberOfRecords(DataTable dtPeople)
         {
             int CountRecord = 0;
@@ -26,11 +26,13 @@ namespace DVLD
         private void _LoadPeopleInfo()
         {
             //get all people from db
-            DataTable dtPeople = clsPerson.GetAllPeople();
+            dtPeople = clsPerson.GetAllPeople();
             //show the people
             dataGridView1.DataSource = dtPeople;
             //show number of records
             lblRecords.Text = GetNumberOfRecords(dtPeople).ToString();
+
+            _ShowFilterItem();
         }
 
         private void frmManagePeople_Load(object sender, EventArgs e)
@@ -86,6 +88,39 @@ namespace DVLD
             addEditePerson.DataBack += _LoadPeopleInfo;// Subscribe to the event
             addEditePerson.ShowDialog();
 
+        }
+
+        private void _ShowFilterItem()
+        {
+            comboBoxFilters.Items.Clear();
+            foreach (DataColumn column in dtPeople.Columns)
+            {
+                comboBoxFilters.Items.Add(column.ToString());
+                comboBoxFilters.SelectedItem = comboBoxFilters.Items[0];
+            }
+            comboBoxFilters.SelectedIndex = 0; //PersonID
+
+        }
+
+        private void txtFilter_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtFilter.Text))
+            {
+                _LoadPeopleInfo();
+                return;
+            }
+            string filterText = txtFilter.Text;
+            if (dtPeople != null)
+            {
+                string filterExpression = $"PersonID = {filterText}";
+
+                // Apply the filter to the DefaultView of the DataTable
+                dtPeople.DefaultView.RowFilter = filterExpression;
+
+
+                // Refresh the DataGridView to display the filtered results
+                dataGridView1.Refresh();
+            }
         }
     }
 }

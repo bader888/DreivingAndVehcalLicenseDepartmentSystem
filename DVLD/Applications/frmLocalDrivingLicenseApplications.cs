@@ -1,6 +1,7 @@
 ﻿using DVDL_Business;
 using DVLD.License;
 using DVLD.Tests;
+using System.Data;
 using System.Windows.Forms;
 
 namespace DVLD.ManageApplications
@@ -9,10 +10,13 @@ namespace DVLD.ManageApplications
     {
         enum enPassedTest
         {
+            NoTestPass = 0,
             vision = 1,
             Written = 2,
             Partical = 3
         }
+
+        DataTable dtAllL_Dapps;
 
         public frmLocalDrivingLicenseApplications()
         {
@@ -44,17 +48,25 @@ namespace DVLD.ManageApplications
 
         private void _DesableScheduleTestMenuItems(int PassedTestCount)
         {
+            scheduleVisionTestToolStripMenuItem.Enabled = false;
+            scheduleWrittenTestToolStripMenuItem.Enabled = false;
+            scheduleStreetTestToolStripMenuItem.Enabled = false;
             switch (PassedTestCount)
             {
+                case (int)enPassedTest.NoTestPass:
+                    {
+                        scheduleVisionTestToolStripMenuItem.Enabled = true;
+                        break;
+                    }
                 case (int)enPassedTest.vision:
                     {
-                        scheduleVisionTestToolStripMenuItem.Enabled = false;
+                        scheduleWrittenTestToolStripMenuItem.Enabled = true;
                         break;
                     }
                 case (int)enPassedTest.Written:
                     {
-                        scheduleVisionTestToolStripMenuItem.Enabled = false;
-                        scheduleWrittenTestToolStripMenuItem.Enabled = false;
+
+                        scheduleStreetTestToolStripMenuItem.Enabled = true;
                         break;
                     }
                 case (int)enPassedTest.Partical:
@@ -70,10 +82,11 @@ namespace DVLD.ManageApplications
             }
         }
 
-
         private void _ShowAllL_D_Lapps()
         {
-            dataGridView1.DataSource = clsLocalDrivingLicenseApplications.GetAllLocalDrivingLicenseApplications();
+            dtAllL_Dapps = clsLocalDrivingLicenseApplications.GetAllLocalDrivingLicenseApplications();
+            dataGridView1.DataSource = dtAllL_Dapps;
+            cbFilterBy.SelectedIndex = 3; //FullName
         }
 
         private void frmLocalDrivingLicenseApplications_Load(object sender, System.EventArgs e)
@@ -85,13 +98,6 @@ namespace DVLD.ManageApplications
         {
             frmNewLocalLicense frm = new frmNewLocalLicense();
             frm.DataBack += _ShowAllL_D_Lapps; // Subscribe to the event
-            frm.ShowDialog();
-        }
-
-        private void _ShowScheduleTestForm(int L_DappID, string TestType)
-        {
-            frmListTestAppointments frm = new frmListTestAppointments();
-            clsGlobal.TestType = TestType;
             frm.ShowDialog();
         }
 
@@ -175,7 +181,7 @@ namespace DVLD.ManageApplications
                 issueDrivingLicenseFirstTimeToolStripMenuItem.Enabled = false;
                 showLicenseToolStripMenuItem.Enabled = false;
             }
-            if (Status == "Cancelled")
+            else if (Status == "Cancelled")
             {
                 _DesableMenuItem();
 
@@ -186,9 +192,11 @@ namespace DVLD.ManageApplications
             }
             else
             {
+
                 int PassedTestCount = int.Parse(dataGridView1.SelectedCells[5].Value.ToString());
                 _DesableScheduleTestMenuItems(PassedTestCount);
             }
+
         }
 
         private void CancelApplicaitonToolStripMenuItem_Click(object sender, System.EventArgs e)
@@ -205,7 +213,23 @@ namespace DVLD.ManageApplications
             }
         }
 
-
+        private void txtFilterValue_TextChanged(object sender, System.EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtFilterValue.Text))
+            {
+                _ShowAllL_D_Lapps();
+                return;
+            }
+            string filterText = txtFilterValue.Text;
+            if (dtAllL_Dapps != null)
+            {
+                string filterExpression = $"FullName like '%{filterText}%'";
+                // Apply the filter to the DefaultView of the DataTable
+                dtAllL_Dapps.DefaultView.RowFilter = filterExpression;
+                // Refresh the DataGridView to display the filtered results
+                dataGridView1.Refresh();
+            }
+        }
     }
 
 }
