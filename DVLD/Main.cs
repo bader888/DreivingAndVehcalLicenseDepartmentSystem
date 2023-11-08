@@ -1,4 +1,5 @@
 ﻿using DVDL_Business;
+using DVLD.Drivers;
 using DVLD.ManageApplications;
 using DVLD.ManageTestType;
 using DVLD.Users;
@@ -67,6 +68,12 @@ namespace DVLD
             frmLocalDrivingLicenseApplications frm = new frmLocalDrivingLicenseApplications();
             frm.ShowDialog();
 
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            frmManageDrivers frm = new frmManageDrivers();
+            frm.ShowDialog();
         }
     }
 }

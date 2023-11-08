@@ -64,7 +64,7 @@ namespace DVDL_DataAccess
         {
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(clsConnectionString.connectionString);
-            string query = "SELECT * FROM Drivers";
+            string query = @"select * from Drivers_View";
             SqlCommand command = new SqlCommand(query, connection);
             try
             {

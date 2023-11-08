@@ -86,7 +86,7 @@ namespace DVDL_Business
         {
             return clsDriversData.IsPersonAsDriver(PersonID);
         }
-        public DataTable GetAllDrivers()
+        static public DataTable GetAllDrivers()
         {
             return clsDriversData.GetAllDrivers();
         }

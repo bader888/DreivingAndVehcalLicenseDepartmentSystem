@@ -6,8 +6,6 @@ namespace DVDL_DataAccess
 {
     public class clsCountriesData
     {
-
-
         public static DataTable GetAllCountries()
         {
             DataTable dt = new DataTable();
