@@ -1,4 +1,5 @@
 ﻿using DVDL_Business;
+using DVLD.Applications;
 using DVLD.Drivers;
 using DVLD.License;
 using DVLD.ManageApplications;
@@ -80,6 +81,13 @@ namespace DVLD
         private void internationalLicenseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmIssueInternationalLicense frm = new frmIssueInternationalLicense();
+            frm.ShowDialog();
+
+        }
+
+        private void internationalDrivingLicenseApplicationsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmInternationalDrvierLicenseApplication frm = new frmInternationalDrvierLicenseApplication();
             frm.ShowDialog();
 
         }
