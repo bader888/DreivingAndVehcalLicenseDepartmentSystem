@@ -42,7 +42,22 @@ namespace DVLD.UserControls
             lblCreatedByUser.Text = clsGlobal.CurrentUser.UserName;
 
             _PersonID = int.Parse(row["PersonID"].ToString());
+        }
 
+        public void ShowApplicationInfo(int AppID)
+        {
+            DataTable dt = clsApplications.GetApplicationInfo(AppID);
+            DataRow row = dt.Rows[0];
+            lblApplicant.Text = row["FullName"].ToString();
+            lblFees.Text = row["PaidFees"].ToString();
+            lblDate.Text = DateTime.Parse(row["ApplicationDate"].ToString()).ToShortDateString();
+            lblStatusDate.Text = DateTime.Parse(row["LastStatusDate"].ToString()).ToShortDateString();
+            lblStatus.Text = row["Status"].ToString();
+            lblType.Text = row["ApplicationTypeTitle"].ToString();
+            lblApplicationID.Text = row["ApplicationID"].ToString();
+            lblCreatedByUser.Text = clsGlobal.CurrentUser.UserName;
+
+            _PersonID = int.Parse(row["PersonID"].ToString());
         }
 
         private void llViewPersonInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

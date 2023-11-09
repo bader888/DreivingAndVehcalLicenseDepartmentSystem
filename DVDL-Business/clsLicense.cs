@@ -141,6 +141,10 @@ namespace DVDL_Business
             return clsLicenseData.GetLicenseInfobyL_DappID(L_DappID);
         }
 
+        public static DataTable GetLicenseInfobyID(int LicenseID)
+        {
+            return clsLicenseData.GetLicenseInfobyID(LicenseID);
+        }
 
     }
 }

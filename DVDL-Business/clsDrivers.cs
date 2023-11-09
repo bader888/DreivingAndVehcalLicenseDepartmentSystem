@@ -90,11 +90,14 @@ namespace DVDL_Business
         {
             return clsDriversData.GetAllDrivers();
         }
-
-
         public static int GetDriverIDByHisName(string DriverName)
         {
             return clsDriversData.GetDriverIDByHisName(DriverName);
+        }
+
+        public static bool HasActiveInternationalLicense(int DriverID)
+        {
+            return clsDriversData.HasActiveInternationalLicense(DriverID);
         }
     }
 }

@@ -173,5 +173,10 @@ namespace DVDL_Business
         {
             return clsApplicationsData.UpdateApplicationStatus(L_DappID, StatusNumber);
         }
+
+        public static DataTable GetApplicationInfo(int AppID)
+        {
+            return clsApplicationsData.GetApplicationInfo(AppID);
+        }
     }
 }

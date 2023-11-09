@@ -301,5 +301,54 @@ namespace DVDL_DataAccess
 
         }
 
+
+        public static DataTable GetLicenseInfobyID(int LicenseID)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection connection = new SqlConnection(clsConnectionString.connectionString);
+            string query = @"
+                            select * from 
+                            (
+                            		SELECT Licenses.*, 
+                            		LicenseClasses.ClassName,
+                                    People.PersonID, 
+                            		People.NationalNo, 
+                            		People.FirstName  +' '+
+                            		People.SecondName +' '+
+                            		People.ThirdName  +' '+
+                            		People.LastName as FullName ,
+                            		People.DateOfBirth, 
+	                                People.ImagePath,   
+                            		People.Gendor
+                            		FROM Licenses INNER JOIN
+                            		 LicenseClasses ON Licenses.LicenseClass = LicenseClasses.LicenseClassID INNER JOIN
+                            		 Drivers ON Licenses.DriverID = Drivers.DriverID INNER JOIN
+                            		 People ON Drivers.PersonID = People.PersonID
+                            )result
+                            where LicenseID = @LicenseID;";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@LicenseID", LicenseID);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    dt.Load(reader);
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return dt;
+
+        }
     }
 }

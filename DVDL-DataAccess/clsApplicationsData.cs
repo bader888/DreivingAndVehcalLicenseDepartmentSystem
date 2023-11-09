@@ -366,5 +366,51 @@ namespace DVDL_DataAccess
             return (rowsAffected > 0);
         }
 
+        public static DataTable GetApplicationInfo(int AppID)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection connection = new SqlConnection(clsConnectionString.connectionString);
+            string query = @"  
+                            SELECT Applications.*, 
+                            People.FirstName  +' '+
+                            People.SecondName +' '+ 
+                            People.ThirdName  +' '+
+                            People.LastName as FullName,
+                            ApplicationTypes.ApplicationTypeTitle, 
+                               CASE
+                             WHEN Applications.ApplicationStatus = 1 THEN 'new'
+                             WHEN Applications.ApplicationStatus = 2 THEN 'cancelled'
+                             WHEN Applications.ApplicationStatus = 3 THEN 'completed' 
+                             ELSE 'unknown' -- Handle other values, if necessary
+                             END AS Status, 
+                            ApplicationTypes.ApplicationFees
+                            FROM Applications INNER JOIN
+                             ApplicationTypes ON Applications.ApplicationTypeID = ApplicationTypes.ApplicationTypeID INNER JOIN
+                             People ON Applications.ApplicantPersonID = People.PersonID";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@AppID", AppID);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    dt.Load(reader);
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return dt;
+        }
+
     }
 }

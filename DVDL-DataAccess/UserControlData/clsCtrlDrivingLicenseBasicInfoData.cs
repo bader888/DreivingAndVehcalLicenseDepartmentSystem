@@ -41,8 +41,8 @@ namespace DVDL_DataAccess
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(clsConnectionString.connectionString);
             string query = @"
- SELECT *
-   FROM (
+                                SELECT *
+                                FROM (
                                 SELECT
                                     LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID AS L_D_LappID,
                                     PaidFees,

@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="claInternationalLicensesData.cs" />
     <Compile Include="clsApplicationsData.cs" />
     <Compile Include="clsApplicationTypeData.cs" />
     <Compile Include="clsConnectionStringDataAccess.cs" />
