@@ -74,6 +74,7 @@
             this.btnAddPerson.Size = new System.Drawing.Size(50, 30);
             this.btnAddPerson.TabIndex = 3;
             this.btnAddPerson.UseVisualStyleBackColor = true;
+            this.btnAddPerson.Click += new System.EventHandler(this.btnAddPerson_Click);
             // 
             // txtFind
             // 

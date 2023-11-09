@@ -109,6 +109,8 @@ namespace DVLD
         private void btnApplicationInfoNext_Click(object sender, EventArgs e)
         {
             tcApplicationInfo.SelectedTab = tpApplicationInfo;
+            btnSave.Enabled = true;
+
         }
 
         private void cbLicenseClass_SelectedIndexChanged(object sender, EventArgs e)
@@ -116,5 +118,6 @@ namespace DVLD
             btnSave.Enabled = true;
 
         }
+
     }
 }

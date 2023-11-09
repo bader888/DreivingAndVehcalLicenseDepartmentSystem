@@ -12,9 +12,12 @@ namespace DVLD
     public partial class frmAddEditePerson : Form
     {
         public delegate void DataBackEventHandler();
-
         // Declare an event using the delegate
         public event DataBackEventHandler DataBack;
+
+        // Define a delegate for sending the PersonID
+        public delegate void SendPersonIDHandler(int personID);
+        public event SendPersonIDHandler OnSendPersonID;
 
         clsPerson person = new clsPerson();
         int _PersonID = -1;
@@ -157,8 +160,9 @@ namespace DVLD
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-
+            int personID = int.Parse(lblPersonID.Text);
             DataBack?.Invoke();
+
             this.Close();
         }
 
@@ -197,6 +201,7 @@ namespace DVLD
                     lblNationalNumber.Text = person.NationalNo;
                     UpdateMode = true;
                     DataBack?.Invoke();
+                    OnSendPersonID.Invoke(person.PersonID);
                 }
             }
 

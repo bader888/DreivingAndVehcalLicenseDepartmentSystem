@@ -1,5 +1,6 @@
 ﻿using DVDL_Business;
 using DVLD.Drivers;
+using DVLD.License;
 using DVLD.ManageApplications;
 using DVLD.ManageTestType;
 using DVLD.Users;
@@ -74,6 +75,13 @@ namespace DVLD
         {
             frmManageDrivers frm = new frmManageDrivers();
             frm.ShowDialog();
+        }
+
+        private void internationalLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmIssueInternationalLicense frm = new frmIssueInternationalLicense();
+            frm.ShowDialog();
+
         }
     }
 }

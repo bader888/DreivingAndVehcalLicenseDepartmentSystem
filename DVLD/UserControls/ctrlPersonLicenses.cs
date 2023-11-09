@@ -10,9 +10,11 @@ namespace DVLD.UserControls
             InitializeComponent();
         }
 
-        public void ShowPersonlocalLicenses()
+        public void ShowPersonLocalLicenseByDriverID(int DriverID)
         {
-            dgvLocalLicensesHistory.DataSource = clsLocalDrivingLicenseApplications.GetPersonLocalDrivingLicenseApplications(clsGlobal.L_DappID);
+            dgvLocalLicensesHistory.DataSource = clsLocalDrivingLicenseApplications.GetPersonLocalDrivingLicenseApplicationsbyDriverID(DriverID);
+
         }
+
     }
 }

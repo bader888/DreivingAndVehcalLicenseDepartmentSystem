@@ -162,8 +162,10 @@ namespace DVLD.ManageApplications
 
         private void showPersonLicenseHistoryToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
-            clsGlobal.L_DappID = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
-            frmPersonLicenseshistory frm = new frmPersonLicenseshistory();
+            string FullName = dataGridView1.SelectedCells[3].Value.ToString();
+            int DriverID = clsDrivers.GetDriverIDByHisName(FullName);
+            int PersonID = clsPerson.GetPersonIDbyHisName(FullName);
+            frmPersonLicenseshistory frm = new frmPersonLicenseshistory(DriverID, PersonID);
             frm.ShowDialog();
         }
 

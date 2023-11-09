@@ -1,4 +1,5 @@
 ﻿using DVDL_Business;
+using DVLD.License;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -58,6 +59,27 @@ namespace DVLD.Drivers
                 // Refresh the DataGridView to display the filtered results
                 dgvDrivers.Refresh();
             }
+
+        }
+
+        private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int PersonID = int.Parse(dgvDrivers.SelectedCells[1].Value.ToString());
+            frmShowPersonInfo frm = new frmShowPersonInfo(PersonID);
+            frm.ShowDialog();
+        }
+
+        private void issueInternationalLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void showPersonLicenseHistoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int DriverID = int.Parse(dgvDrivers.SelectedCells[0].Value.ToString());
+            int PersonID = int.Parse(dgvDrivers.SelectedCells[1].Value.ToString());
+            frmPersonLicenseshistory frm = new frmPersonLicenseshistory(DriverID, PersonID);
+            frm.ShowDialog();
 
         }
     }

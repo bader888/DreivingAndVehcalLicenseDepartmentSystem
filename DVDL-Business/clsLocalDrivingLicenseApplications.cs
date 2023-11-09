@@ -119,6 +119,11 @@ namespace DVDL_Business
         {
             return clsLocalDrivingLicenseApplicationsData.GetPersonLocalDrivingLicenseApplications(L_DappID);
         }
+
+        static public DataTable GetPersonLocalDrivingLicenseApplicationsbyDriverID(int DriverID)
+        {
+            return clsLocalDrivingLicenseApplicationsData.GetPersonLocalDrivingLicenseApplicationsbyDriverID(DriverID);
+        }
     }
 
 }

@@ -39,7 +39,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnApplicationInfoNext = new System.Windows.Forms.Button();
             this.tpPersonalInfo = new System.Windows.Forms.TabPage();
-            this.ctrlPersonInfoWithFilter1 = new DVLD.ctrlPersonInfoWithFilter();
             this.tcApplicationInfo = new System.Windows.Forms.TabControl();
             this.tpApplicationInfo = new System.Windows.Forms.TabPage();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -52,6 +51,7 @@
             this.lblLocalDrivingLicebseApplicationID = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.ctrlPersonInfoWithFilter1 = new DVLD.ctrlPersonInfoWithFilter();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tpPersonalInfo.SuspendLayout();
@@ -66,6 +66,7 @@
             // 
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnClose.Location = new System.Drawing.Point(589, 556);
             this.btnClose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -80,6 +81,7 @@
             // 
             this.btnSave.Enabled = false;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSave.Location = new System.Drawing.Point(723, 556);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -157,6 +159,7 @@
             // btnApplicationInfoNext
             // 
             this.btnApplicationInfoNext.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnApplicationInfoNext.Image = ((System.Drawing.Image)(resources.GetObject("btnApplicationInfoNext.Image")));
             this.btnApplicationInfoNext.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnApplicationInfoNext.Location = new System.Drawing.Point(706, 424);
             this.btnApplicationInfoNext.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -178,17 +181,6 @@
             this.tpPersonalInfo.TabIndex = 0;
             this.tpPersonalInfo.Text = "Personal Info";
             this.tpPersonalInfo.UseVisualStyleBackColor = true;
-            // 
-            // ctrlPersonInfoWithFilter1
-            // 
-            this.ctrlPersonInfoWithFilter1.BackColor = System.Drawing.Color.White;
-            this.ctrlPersonInfoWithFilter1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ctrlPersonInfoWithFilter1.Location = new System.Drawing.Point(20, 29);
-            this.ctrlPersonInfoWithFilter1.Margin = new System.Windows.Forms.Padding(4);
-            this.ctrlPersonInfoWithFilter1.Name = "ctrlPersonInfoWithFilter1";
-            this.ctrlPersonInfoWithFilter1.PersonID = 0;
-            this.ctrlPersonInfoWithFilter1.Size = new System.Drawing.Size(812, 386);
-            this.ctrlPersonInfoWithFilter1.TabIndex = 120;
             // 
             // tcApplicationInfo
             // 
@@ -330,6 +322,17 @@
             this.lblTitle.TabIndex = 126;
             this.lblTitle.Text = "Local Driving License Application";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ctrlPersonInfoWithFilter1
+            // 
+            this.ctrlPersonInfoWithFilter1.BackColor = System.Drawing.Color.White;
+            this.ctrlPersonInfoWithFilter1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ctrlPersonInfoWithFilter1.Location = new System.Drawing.Point(20, 29);
+            this.ctrlPersonInfoWithFilter1.Margin = new System.Windows.Forms.Padding(4);
+            this.ctrlPersonInfoWithFilter1.Name = "ctrlPersonInfoWithFilter1";
+            this.ctrlPersonInfoWithFilter1.PersonID = 0;
+            this.ctrlPersonInfoWithFilter1.Size = new System.Drawing.Size(812, 386);
+            this.ctrlPersonInfoWithFilter1.TabIndex = 120;
             // 
             // frmNewLocalLicense
             // 

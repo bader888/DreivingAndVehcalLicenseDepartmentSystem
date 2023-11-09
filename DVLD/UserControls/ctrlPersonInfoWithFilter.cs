@@ -12,7 +12,10 @@ namespace DVLD
         {
             InitializeComponent();
         }
+
+
         public int PersonID { get; set; }
+
         private void _ShowFilterItem()
         {
             DataTable People = clsPerson.GetAllPeople();
@@ -39,9 +42,23 @@ namespace DVLD
             if (ValidationHelper.StringValidator.ContainsNumbersOnly(txtFind.Text))
             {
                 PersonID = int.Parse(txtFind.Text);
-
                 ctrlPersonInfo1.ShowPersonInfo(PersonID);
             }
         }
+
+        private void btnAddPerson_Click(object sender, EventArgs e)
+        {
+            frmAddEditePerson frm = new frmAddEditePerson();
+            frm.OnSendPersonID += ReceivePersonID;
+            frm.ShowDialog();
+
+
+        }
+
+        public void ReceivePersonID(int personID)
+        {
+            ctrlPersonInfo1.ShowPersonInfo(personID);
+        }
+
     }
 }
