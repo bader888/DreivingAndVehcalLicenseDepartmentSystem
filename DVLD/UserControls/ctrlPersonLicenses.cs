@@ -16,5 +16,11 @@ namespace DVLD.UserControls
 
         }
 
+        public void ShowPersonInternationalLicenseByDriverID(int DriverID)
+        {
+            dgvInternationalLicensesHistory.DataSource = clsInternationalLicenses.GetAllInternationalLicensesbyDriverID(DriverID);
+
+        }
+
     }
 }

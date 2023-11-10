@@ -24,7 +24,6 @@ namespace DVLD.License
 
         }
 
-
         private bool CanIssueNewInternationalLicense()
         {
             DataRow LicenseInfo = GetLicenseInfo();
@@ -55,13 +54,11 @@ namespace DVLD.License
 
 
         }
+
         private void btnClose_Click(object sender, System.EventArgs e)
         {
             this.Close();
         }
-
-
-
 
         private void ctrlDriverLicenseInfoWithFilter1_OnLicenseFound(int obj)
         {
@@ -98,6 +95,7 @@ namespace DVLD.License
             return applications;
 
         }
+
         private clsInternationalLicenses _CreatrInternationalLicense()
         {
             clsInternationalLicenses internationalLicenses = new clsInternationalLicenses();
@@ -128,6 +126,7 @@ namespace DVLD.License
                         MessageBox.Show($"International License issued successfully with ID = {internationalLicenses.InternationalLicenseID}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         lblInternationalLicenseID.Text = internationalLicenses.InternationalLicenseID.ToString();
                         lblApplicationID.Text = applications.ApplicationID.ToString();
+                        llShowLicenseInfo.Enabled = true;
                     }
                     else
                     {
@@ -140,6 +139,18 @@ namespace DVLD.License
 
 
             }
+
+        }
+
+        private void llShowLicenseInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            int InternationalID = int.Parse(lblInternationalLicenseID.Text);
+            frmShowDriverInternationalLicenseInfo frm = new frmShowDriverInternationalLicenseInfo(InternationalID);
+            frm.ShowDialog();
+        }
+
+        private void frmIssueInternationalLicense_Load(object sender, EventArgs e)
+        {
 
         }
     }

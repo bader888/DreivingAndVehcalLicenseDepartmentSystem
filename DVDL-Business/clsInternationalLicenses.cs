@@ -131,5 +131,17 @@ namespace DVDL_Business
         {
             return clsInternationalLicensesData.GetAllInternationalLicenses();
         }
+
+        static public DataTable GetInternationalLicenseInfo(int InternationalID)
+        {
+            return clsInternationalLicensesData.GetInternationalLicenseInfo(InternationalID);
+        }
+
+        public static DataTable GetAllInternationalLicensesbyDriverID(int DriverID)
+        {
+            return clsInternationalLicensesData.GetAllInternationalLicensesbyDriverID(DriverID);
+        }
+
+
     }
 }

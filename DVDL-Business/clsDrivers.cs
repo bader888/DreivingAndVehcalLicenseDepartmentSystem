@@ -99,5 +99,10 @@ namespace DVDL_Business
         {
             return clsDriversData.HasActiveInternationalLicense(DriverID);
         }
+
+        public static DataTable GetDriverInfoByID(int DriverID)
+        {
+            return clsDriversData.GetDriverInfoByID(DriverID);
+        }
     }
 }

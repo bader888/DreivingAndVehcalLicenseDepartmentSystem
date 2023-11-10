@@ -40,6 +40,7 @@ namespace DVDL_DataAccess
             }
             return InternationalLicensesID;
         }
+
         public static bool DeleteInternationalLicenses(int InternationalLicenseID)
         {
             int rowsAffected = 0;
@@ -62,11 +63,21 @@ namespace DVDL_DataAccess
             }
             return (rowsAffected > 0);
         }
+
         public static DataTable GetAllInternationalLicenses()
         {
             DataTable dt = new DataTable();
-            SqlConnection connection = new SqlConnection();
-            string query = "SELECT * FROM InternationalLicenses";
+            SqlConnection connection = new SqlConnection(clsConnectionString.connectionString);
+            string query = @"
+                            SELECT InternationalLicenses.*,
+                            People.FirstName +' ' +
+                            People.SecondName +' ' + 
+                            People.ThirdName +' '+
+                            People.LastName as FullName
+                            FROM InternationalLicenses INNER JOIN
+                             Drivers ON InternationalLicenses.DriverID = Drivers.DriverID INNER JOIN
+                             People ON Drivers.PersonID = People.PersonID
+                            ";
             SqlCommand command = new SqlCommand(query, connection);
             try
             {
@@ -119,6 +130,7 @@ namespace DVDL_DataAccess
 
             return isFound;
         }
+
         public static bool GetInternationalLicensesInfoByID(ref int InternationalLicenseID, ref int ApplicationID, ref int DriverID, ref int IssuedUsingLocalLicenseID, ref DateTime IssueDate, ref DateTime ExpirationDate, ref bool IsActive, ref int CreatedByUserID)
         {
             bool isFound = false;
@@ -164,6 +176,7 @@ namespace DVDL_DataAccess
 
             return isFound;
         }
+
         public static bool UpdateInternationalLicenses(int InternationalLicenseID, int ApplicationID, int DriverID, int IssuedUsingLocalLicenseID, DateTime IssueDate, DateTime ExpirationDate, bool IsActive, int CreatedByUserID)
         {
             int rowsAffected = 0;
@@ -198,5 +211,87 @@ namespace DVDL_DataAccess
 
             return (rowsAffected > 0);
         }
+
+        //new 
+        static public DataTable GetInternationalLicenseInfo(int InternationalLicenseID)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection connection = new SqlConnection(clsConnectionString.connectionString);
+            string query = @"
+                             select * from 
+                            (
+                             SELECT
+                                InternationalLicenses.ApplicationID,
+                            	InternationalLicenses.CreatedByUserID,
+                            	InternationalLicenses.DriverID,
+                            	InternationalLicenses.InternationalLicenseID,
+                            	InternationalLicenses.IssueDate,
+                            	InternationalLicenses.IssuedUsingLocalLicenseID,
+                            	InternationalLicenses.ExpirationDate,    
+                                People.NationalNo,
+                                CONCAT(People.FirstName, ' ', People.SecondName, ' ', People.ThirdName, ' ', People.LastName) AS FullName,
+                                People.DateOfBirth,
+                                CASE WHEN People.Gendor = 1 THEN 'Male' ELSE 'Female' END AS Gender, 
+                            	 CASE WHEN  IsActive = 1 THEN 'yes' ELSE 'No' END AS IsActive,  
+                                People.ImagePath
+                            FROM
+                                InternationalLicenses
+                                INNER JOIN Drivers ON InternationalLicenses.DriverID = Drivers.DriverID
+                                INNER JOIN People ON Drivers.PersonID = People.PersonID
+                            )R 
+                            where InternationalLicenseID = @InternationalLicenseID";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@InternationalLicenseID", InternationalLicenseID);
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    dt.Load(reader);
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return dt;
+        }
+
+        public static DataTable GetAllInternationalLicensesbyDriverID(int DriverID)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection connection = new SqlConnection(clsConnectionString.connectionString);
+            string query = "select * from InternationalLicenses where DriverID = @DriverID ";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@DriverID", DriverID);
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                command.Parameters.AddWithValue("@DriverID", DriverID);
+
+                if (reader.HasRows)
+                {
+                    dt.Load(reader);
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return dt;
+        }
+
     }
 }

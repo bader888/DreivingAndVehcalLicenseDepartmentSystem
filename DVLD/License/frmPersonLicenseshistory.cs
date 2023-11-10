@@ -19,6 +19,7 @@ namespace DVLD.License
         private void frmPersonLicenseshistory_Load(object sender, EventArgs e)
         {
             ctrlPersonLicenses1.ShowPersonLocalLicenseByDriverID(_DriverID);
+            ctrlPersonLicenses1.ShowPersonInternationalLicenseByDriverID(_DriverID);
             ctrlPersonInfo1.ShowPersonInfo(_PersonID);
         }
     }
