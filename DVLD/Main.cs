@@ -91,5 +91,12 @@ namespace DVLD
             frm.ShowDialog();
 
         }
+
+        private void renewLocalLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmRenewLocalLicense frm = new frmRenewLocalLicense();
+            frm.ShowDialog();
+
+        }
     }
 }

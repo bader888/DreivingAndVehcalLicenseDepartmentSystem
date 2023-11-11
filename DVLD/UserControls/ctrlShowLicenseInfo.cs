@@ -15,6 +15,14 @@ namespace DVLD
         public int DriverID { get; set; }
         public int PersonID { get; set; }
 
+        public string LicenseClass
+        {
+            get
+            {
+                return lblClass.Text;
+
+            }
+        }
 
         private string GetIssueResone(string ReasonNumber)
         {

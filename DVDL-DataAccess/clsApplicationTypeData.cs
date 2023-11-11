@@ -137,6 +137,44 @@ namespace DVDL_DataAccess
 
             return (rowsAffected > 0);
         }
+
+
+        static public decimal GetApplicationTypeFeesbyName(string ApplicationTypeName)
+        {
+
+            decimal ApplicationTypeID = -1; // Default value in case the row name is not found
+
+            SqlConnection connection = new SqlConnection(clsConnectionString.connectionString);
+            string query = @"select ApplicationFees FROM ApplicationTypes WHERE ApplicationTypeTitle LIKE @ApplicationTypeName;";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@ApplicationTypeName", "%" + ApplicationTypeName + "%");
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    ApplicationTypeID = (decimal)reader["ApplicationFees"];
+                }
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                // MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return ApplicationTypeID;
+        }
+
+
     }
 }
 

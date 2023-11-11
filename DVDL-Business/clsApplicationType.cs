@@ -52,15 +52,17 @@ namespace DVDL_Business
         {
             return clsApplicationTypeData.GetApplicationTypeIDbyName(ApplicationTypeName);
         }
+
+        static public decimal GetApplicationTypeFeesbyName(string ApplicationTypeName)
+        {
+            return clsApplicationTypeData.GetApplicationTypeFeesbyName(ApplicationTypeName);
+        }
         public bool Save()
         {
             return _UpdateApplicationTypes();
 
 
         }
-
-
-
         static public DataTable GetAllApplicationTypes()
         {
             return clsApplicationTypeData.GetAllApplicationTypes();

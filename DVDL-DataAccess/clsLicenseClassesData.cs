@@ -66,6 +66,37 @@ namespace DVDL_DataAccess
             return LicenseClassID;
         }
 
+        static public decimal GetLicenseClassFeesByName(string LicenseClassName)
+        {
+            decimal LicenseClassFees = -1; // Default value in case the row name is not found
 
+            SqlConnection connection = new SqlConnection(clsConnectionString.connectionString);
+            string query = @"select ClassFees from LicenseClasses where LicenseClasses.ClassName =  @LicenseClassName ";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@LicenseClassName", LicenseClassName);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    LicenseClassFees = (decimal)reader["ClassFees"];
+                }
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                // MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return LicenseClassFees;
+        }
     }
 }

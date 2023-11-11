@@ -37,6 +37,10 @@ namespace DVLD.UserControls
                 lblExpirationDate.Text = ExpirationDate.ToShortDateString();
                 pbPersonImage.Load(imgPath);
             }
+
+
         }
+
     }
+
 }

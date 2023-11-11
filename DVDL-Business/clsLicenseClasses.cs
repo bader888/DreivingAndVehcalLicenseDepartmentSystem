@@ -15,5 +15,10 @@ namespace DVDL_Business
         {
             return clsLicenseClassesData.GetLicenseClassIDbyName(LicenseClassName);
         }
+        static public decimal GetLicenseClassFeesByName(string LicenseClassName)
+        {
+            return clsLicenseClassesData.GetLicenseClassFeesByName(LicenseClassName);
+        }
+
     }
 }

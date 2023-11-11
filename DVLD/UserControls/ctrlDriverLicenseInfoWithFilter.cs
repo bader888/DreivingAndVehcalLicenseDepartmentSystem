@@ -14,6 +14,13 @@ namespace DVLD.UserControls
         public int DriverID { get; set; }
         public int PersonID { get; set; }
 
+        public string LicenseClass
+        {
+            get
+            {
+                return ctrlShowLicenseInfo1.LicenseClass;
+            }
+        }
 
 
         // Define a custom event handler delegate with parameters
