@@ -35,6 +35,7 @@
             this.newDrivingLicenseToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.localToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.internationalLicenseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.renewLocalLicenseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.manageApplicationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.localDrivingLicenseApplicationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,7 +52,6 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.signOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.renewLocalLicenseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -112,7 +112,7 @@
             this.newDrivingLicenseToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("newDrivingLicenseToolStripMenuItem1.Image")));
             this.newDrivingLicenseToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.newDrivingLicenseToolStripMenuItem1.Name = "newDrivingLicenseToolStripMenuItem1";
-            this.newDrivingLicenseToolStripMenuItem1.Size = new System.Drawing.Size(273, 38);
+            this.newDrivingLicenseToolStripMenuItem1.Size = new System.Drawing.Size(232, 38);
             this.newDrivingLicenseToolStripMenuItem1.Text = "New Driving License";
             // 
             // localToolStripMenuItem
@@ -135,6 +135,16 @@
             this.internationalLicenseToolStripMenuItem.Text = "International License";
             this.internationalLicenseToolStripMenuItem.Click += new System.EventHandler(this.internationalLicenseToolStripMenuItem_Click);
             // 
+            // renewLocalLicenseToolStripMenuItem
+            // 
+            this.renewLocalLicenseToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.renewLocalLicenseToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("renewLocalLicenseToolStripMenuItem.Image")));
+            this.renewLocalLicenseToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.renewLocalLicenseToolStripMenuItem.Name = "renewLocalLicenseToolStripMenuItem";
+            this.renewLocalLicenseToolStripMenuItem.Size = new System.Drawing.Size(232, 38);
+            this.renewLocalLicenseToolStripMenuItem.Text = "Renew Local License";
+            this.renewLocalLicenseToolStripMenuItem.Click += new System.EventHandler(this.renewLocalLicenseToolStripMenuItem_Click);
+            // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
@@ -154,20 +164,21 @@
             // 
             // localDrivingLicenseApplicationsToolStripMenuItem
             // 
-            this.localDrivingLicenseApplicationsToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.localDrivingLicenseApplicationsToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.localDrivingLicenseApplicationsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("localDrivingLicenseApplicationsToolStripMenuItem.Image")));
             this.localDrivingLicenseApplicationsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.localDrivingLicenseApplicationsToolStripMenuItem.Name = "localDrivingLicenseApplicationsToolStripMenuItem";
-            this.localDrivingLicenseApplicationsToolStripMenuItem.Size = new System.Drawing.Size(456, 38);
+            this.localDrivingLicenseApplicationsToolStripMenuItem.Size = new System.Drawing.Size(389, 38);
             this.localDrivingLicenseApplicationsToolStripMenuItem.Text = "Local Driving License Applications";
             this.localDrivingLicenseApplicationsToolStripMenuItem.Click += new System.EventHandler(this.localDrivingLicenseApplicationsToolStripMenuItem_Click);
             // 
             // internationalDrivingLicenseApplicationsToolStripMenuItem
             // 
+            this.internationalDrivingLicenseApplicationsToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.internationalDrivingLicenseApplicationsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("internationalDrivingLicenseApplicationsToolStripMenuItem.Image")));
             this.internationalDrivingLicenseApplicationsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.internationalDrivingLicenseApplicationsToolStripMenuItem.Name = "internationalDrivingLicenseApplicationsToolStripMenuItem";
-            this.internationalDrivingLicenseApplicationsToolStripMenuItem.Size = new System.Drawing.Size(456, 38);
+            this.internationalDrivingLicenseApplicationsToolStripMenuItem.Size = new System.Drawing.Size(389, 38);
             this.internationalDrivingLicenseApplicationsToolStripMenuItem.Text = "International Driving License Applications";
             this.internationalDrivingLicenseApplicationsToolStripMenuItem.Click += new System.EventHandler(this.internationalDrivingLicenseApplicationsToolStripMenuItem_Click);
             // 
@@ -288,15 +299,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
-            // 
-            // renewLocalLicenseToolStripMenuItem
-            // 
-            this.renewLocalLicenseToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("renewLocalLicenseToolStripMenuItem.Image")));
-            this.renewLocalLicenseToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.renewLocalLicenseToolStripMenuItem.Name = "renewLocalLicenseToolStripMenuItem";
-            this.renewLocalLicenseToolStripMenuItem.Size = new System.Drawing.Size(273, 38);
-            this.renewLocalLicenseToolStripMenuItem.Text = "Renew Local License";
-            this.renewLocalLicenseToolStripMenuItem.Click += new System.EventHandler(this.renewLocalLicenseToolStripMenuItem_Click);
             // 
             // Main
             // 

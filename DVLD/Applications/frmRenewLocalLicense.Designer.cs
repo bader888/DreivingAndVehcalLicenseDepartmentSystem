@@ -66,7 +66,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.llShowLicenseInfo = new System.Windows.Forms.LinkLabel();
             this.llShowLicenseHistory = new System.Windows.Forms.LinkLabel();
-            this.btnIssueLicense = new System.Windows.Forms.Button();
+            this.btnRenewLicense = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.gpApplicationInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
@@ -509,19 +509,21 @@
             this.llShowLicenseHistory.TabIndex = 184;
             this.llShowLicenseHistory.TabStop = true;
             this.llShowLicenseHistory.Text = "Show Licenses History";
+            this.llShowLicenseHistory.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llShowLicenseHistory_LinkClicked);
             // 
-            // btnIssueLicense
+            // btnRenewLicense
             // 
-            this.btnIssueLicense.Enabled = false;
-            this.btnIssueLicense.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIssueLicense.Image = ((System.Drawing.Image)(resources.GetObject("btnIssueLicense.Image")));
-            this.btnIssueLicense.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnIssueLicense.Location = new System.Drawing.Point(740, 670);
-            this.btnIssueLicense.Name = "btnIssueLicense";
-            this.btnIssueLicense.Size = new System.Drawing.Size(126, 37);
-            this.btnIssueLicense.TabIndex = 183;
-            this.btnIssueLicense.Text = "Renew";
-            this.btnIssueLicense.UseVisualStyleBackColor = true;
+            this.btnRenewLicense.Enabled = false;
+            this.btnRenewLicense.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRenewLicense.Image = ((System.Drawing.Image)(resources.GetObject("btnRenewLicense.Image")));
+            this.btnRenewLicense.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRenewLicense.Location = new System.Drawing.Point(740, 670);
+            this.btnRenewLicense.Name = "btnRenewLicense";
+            this.btnRenewLicense.Size = new System.Drawing.Size(126, 37);
+            this.btnRenewLicense.TabIndex = 183;
+            this.btnRenewLicense.Text = "Renew";
+            this.btnRenewLicense.UseVisualStyleBackColor = true;
+            this.btnRenewLicense.Click += new System.EventHandler(this.btnRenewLicense_Click);
             // 
             // btnClose
             // 
@@ -545,7 +547,7 @@
             this.ClientSize = new System.Drawing.Size(894, 712);
             this.Controls.Add(this.llShowLicenseInfo);
             this.Controls.Add(this.llShowLicenseHistory);
-            this.Controls.Add(this.btnIssueLicense);
+            this.Controls.Add(this.btnRenewLicense);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.gpApplicationInfo);
             this.Controls.Add(this.ctrlDriverLicenseInfoWithFilter1);
@@ -600,7 +602,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.LinkLabel llShowLicenseInfo;
         private System.Windows.Forms.LinkLabel llShowLicenseHistory;
-        private System.Windows.Forms.Button btnIssueLicense;
+        private System.Windows.Forms.Button btnRenewLicense;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox4;

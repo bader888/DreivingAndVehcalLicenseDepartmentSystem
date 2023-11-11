@@ -1,5 +1,4 @@
-﻿using DVDL_Business;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace DVLD
 {
@@ -15,7 +14,8 @@ namespace DVLD
 
         private void testDB_Load(object sender, System.EventArgs e)
         {
-            MessageBox.Show(clsApplications.UpdateApplicationStatus(63, 1).ToString());
+
+
         }
     }
 }

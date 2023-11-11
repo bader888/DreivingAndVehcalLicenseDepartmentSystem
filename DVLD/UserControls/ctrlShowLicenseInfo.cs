@@ -13,6 +13,7 @@ namespace DVLD
         }
 
         public int DriverID { get; set; }
+
         public int PersonID { get; set; }
 
         public string LicenseClass
@@ -66,6 +67,13 @@ namespace DVLD
 
         public bool ShowLicenseInfo(int LicenseID)
         {
+            clsLicense License = clsLicense.Find(LicenseID);
+            if (License == null)
+            {
+                MessageBox.Show("License not found. Please contact support for assistance.", "License Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return false;
+            }
             DataTable dt = clsLicense.GetLicenseInfobyID(LicenseID);
             if (dt.Rows.Count > 0)
             {
