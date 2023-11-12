@@ -42,6 +42,7 @@ namespace DVDL_DataAccess
             }
             return LicensesID;
         }
+
         public static bool DeleteLicenses(int LicenseID)
         {
             int rowsAffected = 0;
@@ -64,6 +65,7 @@ namespace DVDL_DataAccess
             }
             return (rowsAffected > 0);
         }
+
         public static DataTable GetAllLicenses()
         {
             DataTable dt = new DataTable();
@@ -90,6 +92,7 @@ namespace DVDL_DataAccess
             }
             return dt;
         }
+
         public static bool IsLicensesExist(int LicenseID)
         {
             bool isFound = false;
@@ -120,6 +123,7 @@ namespace DVDL_DataAccess
 
             return isFound;
         }
+
         public static bool GetLicensesInfoByID(ref int LicenseID, ref int ApplicationID, ref int DriverID, ref int LicenseClass, ref DateTime IssueDate, ref DateTime ExpirationDate, ref string Notes, ref decimal PaidFees, ref bool IsActive, ref byte IssueReason, ref int CreatedByUserID)
         {
             bool isFound = false;
@@ -168,6 +172,7 @@ namespace DVDL_DataAccess
 
             return isFound;
         }
+
         public static bool UpdateLicenses(int LicenseID, int ApplicationID, int DriverID, int LicenseClass, DateTime IssueDate, DateTime ExpirationDate, string Notes, decimal PaidFees, bool IsActive, byte IssueReason, int CreatedByUserID)
         {
             int rowsAffected = 0;
@@ -301,7 +306,6 @@ namespace DVDL_DataAccess
 
         }
 
-
         public static DataTable GetLicenseInfobyID(int LicenseID)
         {
             DataTable dt = new DataTable();
@@ -350,5 +354,33 @@ namespace DVDL_DataAccess
             return dt;
 
         }
+
+        public static bool DeactivateLicense(int LicenseID)
+        {
+            int rowsAffected = 0;
+            SqlConnection connection = new SqlConnection(clsConnectionString.connectionString);
+            string query = @"
+                            update Licenses 
+                            set IsActive = 0
+                            where LicenseID = @LicenseID";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@ID", LicenseID);
+            try
+            {
+                connection.Open();
+                rowsAffected = command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                // Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return (rowsAffected > 0);
+        }
+
+
     }
 }

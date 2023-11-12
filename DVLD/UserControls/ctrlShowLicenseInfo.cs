@@ -32,6 +32,12 @@ namespace DVLD
                 case "1":
                     return "First Time";
 
+                case "2":
+                    return "Renew";
+                case "3":
+                    return "Replacement for Damaged";
+                case "4":
+                    return "Replacement for Lost";
             }
             return "???";
         }

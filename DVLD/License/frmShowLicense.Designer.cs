@@ -51,10 +51,12 @@
             // 
             // ctrlShowLicenseInfo1
             // 
+            this.ctrlShowLicenseInfo1.DriverID = 0;
             this.ctrlShowLicenseInfo1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ctrlShowLicenseInfo1.Location = new System.Drawing.Point(0, 106);
             this.ctrlShowLicenseInfo1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ctrlShowLicenseInfo1.Name = "ctrlShowLicenseInfo1";
+            this.ctrlShowLicenseInfo1.PersonID = 0;
             this.ctrlShowLicenseInfo1.Size = new System.Drawing.Size(869, 346);
             this.ctrlShowLicenseInfo1.TabIndex = 0;
             // 
@@ -91,7 +93,7 @@
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.ctrlShowLicenseInfo1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmShowLicense";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

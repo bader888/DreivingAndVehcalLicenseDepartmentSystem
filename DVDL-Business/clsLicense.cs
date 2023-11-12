@@ -146,5 +146,10 @@ namespace DVDL_Business
             return clsLicenseData.GetLicenseInfobyID(LicenseID);
         }
 
+        public static bool DeactivateLicense(int LicenseID)
+        {
+            return clsLicenseData.DeactivateLicense(LicenseID);
+        }
+
     }
 }
