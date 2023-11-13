@@ -87,6 +87,7 @@ namespace DVLD.ManageApplications
             dtAllL_Dapps = clsLocalDrivingLicenseApplications.GetAllLocalDrivingLicenseApplications();
             dataGridView1.DataSource = dtAllL_Dapps;
             cbFilterBy.SelectedIndex = 3; //FullName
+            lblRecordsCount.Text = clsGlobal.RecordCount("LocalDrivingLicenseApplications").ToString();
         }
 
         private void frmLocalDrivingLicenseApplications_Load(object sender, System.EventArgs e)

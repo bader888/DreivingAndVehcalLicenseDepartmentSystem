@@ -67,6 +67,7 @@
     <Compile Include="clsDetainedLicensesData.cs" />
     <Compile Include="clsDriversData.cs" />
     <Compile Include="clsLicenseData.cs" />
+    <Compile Include="clsRecordCount.cs" />
     <Compile Include="clsTestsData.cs" />
     <Compile Include="UserControlData\clsCtrlDrivingLicenseBasicInfoData.cs" />
     <Compile Include="clsLicenseClassesData.cs" />

@@ -20,6 +20,7 @@ namespace DVLD.Drivers
             dtDrivers = clsDrivers.GetAllDrivers();
             dgvDrivers.DataSource = dtDrivers;
             _ShowFilterItem();
+            lblRecordsCount.Text = clsGlobal.RecordCount("Drivers").ToString();
         }
 
         private void frmManageDrivers_Load(object sender, EventArgs e)
@@ -69,10 +70,6 @@ namespace DVLD.Drivers
             frm.ShowDialog();
         }
 
-        private void issueInternationalLicenseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void showPersonLicenseHistoryToolStripMenuItem_Click(object sender, EventArgs e)
         {

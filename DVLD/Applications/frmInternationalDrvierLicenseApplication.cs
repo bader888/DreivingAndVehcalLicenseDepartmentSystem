@@ -15,6 +15,7 @@ namespace DVLD.Applications
         private void _LoadAllInternationalLicenses()
         {
             dgvInternationalLicenses.DataSource = clsInternationalLicenses.GetAllInternationalLicenses();
+            lblInternationalLicensesRecords.Text = clsGlobal.RecordCount("InternationalLicenses").ToString();
 
         }
         private void frmInternationalDrvierLicenseApplication_Load(object sender, System.EventArgs e)

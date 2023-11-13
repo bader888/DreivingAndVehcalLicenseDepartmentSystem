@@ -15,6 +15,7 @@ namespace DVLD.Applications
         private void loadAllDetainLicenses()
         {
             dgvDetainedLicenses.DataSource = clsDetainedLicenses.GetAllDetainedLicenses();
+            lblTotalRecords.Text = clsGlobal.RecordCount("DetainedLicenses").ToString();
 
         }
         private void frmDetainLicenseApplication_Load(object sender, EventArgs e)

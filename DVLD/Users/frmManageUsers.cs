@@ -29,7 +29,7 @@ namespace DVLD.Users
             _AllUsers = clsUsers.GetAllusers();
             dataGridView1.DataSource = _AllUsers;
             _ShowFilterItem(_AllUsers);
-
+            lblRecords.Text = clsGlobal.RecordCount("Users").ToString();
         }
 
         private void frmManageUsers_Load(object sender, EventArgs e)

@@ -18,6 +18,7 @@ namespace DVLD.ManageTestType
         private void _ShowTestTypes()
         {
             dataGridView2.DataSource = clsTestType.GetAllTestTypes();
+            lblRecords.Text = clsGlobal.RecordCount("TestTypes").ToString();
 
         }
         private void frmManageTestType_Load(object sender, EventArgs e)

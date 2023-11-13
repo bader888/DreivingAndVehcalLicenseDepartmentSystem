@@ -116,7 +116,6 @@ namespace DVLD
         private void cbLicenseClass_SelectedIndexChanged(object sender, EventArgs e)
         {
             btnSave.Enabled = true;
-
         }
 
     }

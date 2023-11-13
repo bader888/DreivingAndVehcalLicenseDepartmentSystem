@@ -1,4 +1,6 @@
-﻿namespace DVDL_Business
+﻿using DVDL_DataAccess;
+
+namespace DVDL_Business
 {
     public class clsGlobal
     {
@@ -12,6 +14,11 @@
         static public clsUsers CurrentUser { get; set; }
 
         static public int L_DappID { get; set; }
+
+        static public int RecordCount(string TableName)
+        {
+            return clsRecordCount.CountRecords(TableName);
+        }
 
     }
 }

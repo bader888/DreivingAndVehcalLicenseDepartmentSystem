@@ -19,6 +19,7 @@ namespace DVLD
         private void _ShowAllApplicationType()
         {
             dataGridView1.DataSource = clsApplicationType.GetAllApplicationTypes();
+            lblRecords.Text = clsGlobal.RecordCount("ApplicationTypes").ToString();
 
         }
         private void frmManageApplicationType_Load(object sender, EventArgs e)

@@ -12,16 +12,6 @@ namespace DVLD
             InitializeComponent();
         }
         DataTable dtPeople;
-        private int GetNumberOfRecords(DataTable dtPeople)
-        {
-            int CountRecord = 0;
-            foreach (DataRow row in dtPeople.Rows)
-            {
-                CountRecord++;
-            }
-
-            return CountRecord;
-        }
 
         private void _LoadPeopleInfo()
         {
@@ -30,7 +20,7 @@ namespace DVLD
             //show the people
             dataGridView1.DataSource = dtPeople;
             //show number of records
-            lblRecords.Text = GetNumberOfRecords(dtPeople).ToString();
+            lblRecords.Text = clsGlobal.RecordCount("People").ToString();
 
             _ShowFilterItem();
         }

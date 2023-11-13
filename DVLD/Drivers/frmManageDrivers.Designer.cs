@@ -155,7 +155,6 @@
             this.issueInternationalLicenseToolStripMenuItem.Name = "issueInternationalLicenseToolStripMenuItem";
             this.issueInternationalLicenseToolStripMenuItem.Size = new System.Drawing.Size(292, 38);
             this.issueInternationalLicenseToolStripMenuItem.Text = "Issue International License";
-            this.issueInternationalLicenseToolStripMenuItem.Click += new System.EventHandler(this.issueInternationalLicenseToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 

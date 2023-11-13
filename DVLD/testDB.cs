@@ -63,16 +63,6 @@ namespace DVLD
 
         private void testDB_Load(object sender, System.EventArgs e)
         {
-            int LicenseID = -1;
-            DateTime DetainDate = DateTime.Now;
-            decimal FineFees = -1;
-            int CreatedByUserID = -1;
-            bool IsReleased = false;
-            DateTime ReleaseDate = DateTime.Now;
-            int ReleasedByUserID = -1;
-            int ReleaseApplicationID = -1;
-
-            GetDetainedLicenseInfoByID(5, LicenseID, DetainDate, FineFees, CreatedByUserID, IsReleased, ReleaseDate, ReleasedByUserID, ReleaseApplicationID);
 
         }
     }
