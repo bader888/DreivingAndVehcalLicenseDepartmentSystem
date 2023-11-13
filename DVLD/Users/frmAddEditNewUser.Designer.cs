@@ -34,6 +34,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPersonInfo = new System.Windows.Forms.TabPage();
             this.btnNext = new System.Windows.Forms.Button();
+            this.ctrlPersonInfoWithFilter1 = new DVLD.ctrlPersonInfoWithFilter();
             this.tabLoginInfo = new System.Windows.Forms.TabPage();
             this.checkboxIsActive = new System.Windows.Forms.CheckBox();
             this.txtConfirmPassword = new System.Windows.Forms.TextBox();
@@ -51,7 +52,6 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.ctrlPersonInfoWithFilter1 = new DVLD.ctrlPersonInfoWithFilter();
             this.tabControl1.SuspendLayout();
             this.tabPersonInfo.SuspendLayout();
             this.tabLoginInfo.SuspendLayout();
@@ -107,6 +107,18 @@
             this.btnNext.Text = "Next";
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
+            // ctrlPersonInfoWithFilter1
+            // 
+            this.ctrlPersonInfoWithFilter1.BackColor = System.Drawing.Color.White;
+            this.ctrlPersonInfoWithFilter1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ctrlPersonInfoWithFilter1.Location = new System.Drawing.Point(7, 7);
+            this.ctrlPersonInfoWithFilter1.Margin = new System.Windows.Forms.Padding(4);
+            this.ctrlPersonInfoWithFilter1.Name = "ctrlPersonInfoWithFilter1";
+            this.ctrlPersonInfoWithFilter1.PersonID = 0;
+            this.ctrlPersonInfoWithFilter1.Size = new System.Drawing.Size(812, 386);
+            this.ctrlPersonInfoWithFilter1.TabIndex = 1;
+            this.ctrlPersonInfoWithFilter1.Load += new System.EventHandler(this.ctrlPersonInfoWithFilter1_Load);
             // 
             // tabLoginInfo
             // 
@@ -261,7 +273,7 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(579, 576);
+            this.btnSave.Location = new System.Drawing.Point(721, 577);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(120, 40);
             this.btnSave.TabIndex = 3;
@@ -274,7 +286,7 @@
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(705, 576);
+            this.btnClose.Location = new System.Drawing.Point(586, 577);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(120, 40);
             this.btnClose.TabIndex = 4;
@@ -285,18 +297,6 @@
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
-            // 
-            // ctrlPersonInfoWithFilter1
-            // 
-            this.ctrlPersonInfoWithFilter1.BackColor = System.Drawing.Color.White;
-            this.ctrlPersonInfoWithFilter1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ctrlPersonInfoWithFilter1.Location = new System.Drawing.Point(7, 7);
-            this.ctrlPersonInfoWithFilter1.Margin = new System.Windows.Forms.Padding(4);
-            this.ctrlPersonInfoWithFilter1.Name = "ctrlPersonInfoWithFilter1";
-            this.ctrlPersonInfoWithFilter1.PersonID = 0;
-            this.ctrlPersonInfoWithFilter1.Size = new System.Drawing.Size(812, 386);
-            this.ctrlPersonInfoWithFilter1.TabIndex = 1;
-            this.ctrlPersonInfoWithFilter1.Load += new System.EventHandler(this.ctrlPersonInfoWithFilter1_Load);
             // 
             // frmAddNewUser
             // 

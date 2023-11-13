@@ -56,13 +56,14 @@ namespace DVDL_Business
                 return null;
         }
 
-        public static clsUsers Find(string UserName, string Password)
+        public static clsUsers Find(string UserName)
         {
             int userID = -1;
             int PersonID = -1;
+            string Password = null;
             bool IsActive = false;
 
-            if (clsUsersData.GetUserByUserNameAndPassword(
+            if (clsUsersData.GetUserByUserName(
               ref userID,
             ref PersonID,
             ref UserName,
@@ -87,6 +88,7 @@ namespace DVDL_Business
             this.UserID = clsUsersData.AddNewUser(this.PersonID, this.UserName, this.Password, this.IsActive);
             return (this.UserID != -1);
         }
+
         private bool _Updateusers()
         {
             return clsUsersData.Updateusers(this.UserID, this.PersonID, this.UserName, this.Password, this.IsActive);

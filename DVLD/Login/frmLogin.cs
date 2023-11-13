@@ -13,43 +13,51 @@ namespace DVLD
             InitializeComponent();
 
         }
+
         private bool isPasswordVisible = false;
-        private void button1_Click(object sender, System.EventArgs e)
-        {
-            this.Close();
-        }
+
         private void _OpenMainScreen()
         {
             Main main = new Main();
             main.ShowDialog();
         }
 
-        private void btnLogin_Click(object sender, System.EventArgs e)
+        private void Login()
         {
             string UserName = txtUserName.Text;
-            string Password = txtPassword.Text;
-            clsUsers User = clsUsers.Find(UserName, Password);
+            string EnterdPassword = txtPassword.Text;//entierd password 
+            clsUsers User = clsUsers.Find(UserName);
 
-            if (User != null)
+            if (User == null)
             {
-                //global
-                clsGlobal.CurrentUser = User;
-                if (User.Password == Password && User.UserName == UserName && User.IsActive)
-                {
-                    if (checkBoxRemeberMe.Checked)
-                        UserAuthentication.SetUserCredentials(UserName, Password);
-                    else
-                        clsFileOperations.ClearFile(clsGlobal.filePath);
-                    _OpenMainScreen();
-                }
+                MessageBox.Show("User Not Found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!User.IsActive)
+            {
+                MessageBox.Show("User Not Active!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            //  User.Password == stored password
+            if (clsEncrypter.PasswordHasher.VerifyPassword(EnterdPassword, User.Password))
+            {
+                if (checkBoxRemeberMe.Checked)
+                    UserAuthentication.SetUserCredentials(UserName, EnterdPassword);
                 else
-                    MessageBox.Show("User Not Active!");
+                    clsFileOperations.ClearFile(clsGlobal.filePath);
+                _OpenMainScreen();
             }
             else
-                MessageBox.Show("username/password wrong!");
+                MessageBox.Show("Wrong Password", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+
+            //global
+            clsGlobal.CurrentUser = User;
         }
 
-        private void frmLogin_Load(object sender, System.EventArgs e)
+        private void ShowRememberUserInfo()
         {
             if (!clsFileOperations.IsFileEmpty(clsGlobal.filePath))
             {
@@ -58,6 +66,17 @@ namespace DVLD
                 txtPassword.Text = password;
                 checkBoxRemeberMe.Checked = true;
             }
+        }
+
+        private void btnLogin_Click(object sender, System.EventArgs e)
+        {
+            Login();
+        }
+
+        private void frmLogin_Load(object sender, System.EventArgs e)
+        {
+            ShowRememberUserInfo();
+
         }
 
         private void imgShowHidePassword_Click(object sender, System.EventArgs e)
@@ -74,6 +93,11 @@ namespace DVLD
                 imgShowHidePassword.Image = Image.FromFile("C:\\Users\\lenovo\\source\\repos\\BankProjectDB\\Icon\\hide.png");
             }
 
+        }
+
+        private void btnClose_Click(object sender, System.EventArgs e)
+        {
+            this.Close();
         }
     }
 }

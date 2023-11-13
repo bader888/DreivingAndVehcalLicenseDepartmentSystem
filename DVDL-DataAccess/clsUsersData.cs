@@ -179,14 +179,13 @@ namespace DVDL_DataAccess
             return isFound;
         }
 
-        public static bool GetUserByUserNameAndPassword(ref int UserID, ref int PersonID, ref string UserName, ref string Password, ref bool IsActive)
+        public static bool GetUserByUserName(ref int UserID, ref int PersonID, ref string UserName, ref string Password, ref bool IsActive)
         {
             bool isFound = false;
             SqlConnection connection = new SqlConnection(clsConnectionString.connectionString);
-            string query = "SELECT * FROM users WHERE UserName = @UserName and Password = @Password";
+            string query = "SELECT * FROM users WHERE UserName = @UserName";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@UserName", UserName);
-            command.Parameters.AddWithValue("@Password", Password);
 
             try
             {

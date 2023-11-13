@@ -35,7 +35,6 @@ namespace DVLD.Users
             }
         }
 
-
         private bool _IsUserDataValid()
         {
 
@@ -76,22 +75,17 @@ namespace DVLD.Users
             if (_IsUserDataValid() && errorProvider1.GetError(txtConfirmPassword) == string.Empty)
             {
                 _user.PersonID = ctrlPersonInfoWithFilter1.PersonID;
-                _user.Password = txtPassword.Text;
+                _user.Password = clsEncrypter.PasswordHasher.HashPassword(txtPassword.Text);
                 _user.UserName = txtUserName.Text;
                 _user.IsActive = checkboxIsActive.Checked ? true : false;
                 if (_user.Save())
                 {
-                    MessageBox.Show("Data Save Seccessfully");
+                    MessageBox.Show("Save successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     lblUserID.Text = _user.UserID.ToString();
                     DataBack?.Invoke();
-
-
                 }
                 else
-                {
-                    MessageBox.Show("hiu");
-
-                }
+                    MessageBox.Show($"Failed to save The User", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
         }
