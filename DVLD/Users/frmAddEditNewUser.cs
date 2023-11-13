@@ -47,7 +47,6 @@ namespace DVLD.Users
             if (string.IsNullOrWhiteSpace(txtConfirmPassword.Text))
                 return false;
 
-
             return true;
         }
 
@@ -109,11 +108,5 @@ namespace DVLD.Users
             tabControl1.SelectedTab = tabLoginInfo;
         }
 
-        private void ctrlPersonInfoWithFilter1_Load(object sender, System.EventArgs e)
-        {
-            frmAddEditePerson addEditePerson = new frmAddEditePerson();
-            addEditePerson.ShowDialog();
-
-        }
     }
 }

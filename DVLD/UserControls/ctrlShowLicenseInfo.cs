@@ -66,6 +66,7 @@ namespace DVLD
                 lblFullName.Text = row["FullName"].ToString();
                 lblDriverID.Text = row["DriverID"].ToString();
                 lblClass.Text = row["ClassName"].ToString();
+                lblIsDetained.Text = clsDetainedLicenses.IsLicenseDetain(LicenseID) ? "Yes" : "No";
                 if (lblGendor.Text == "Male")
                     pbGendor.Load(clsGlobal.MaleImagePath);
                 else

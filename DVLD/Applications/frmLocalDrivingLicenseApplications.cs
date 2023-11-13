@@ -170,9 +170,6 @@ namespace DVLD.ManageApplications
             frm.ShowDialog();
         }
 
-
-        //not completed
-
         private void cmsApplications_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
             _ShowAllMenuItem();

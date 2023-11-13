@@ -160,7 +160,7 @@ namespace DVLD
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            int personID = int.Parse(lblPersonID.Text);
+            //int personID = int.Parse(lblPersonID.Text);
             DataBack?.Invoke();
 
             this.Close();
@@ -200,7 +200,6 @@ namespace DVLD
                     lblPersonID.Text = person.PersonID.ToString();
                     lblNationalNumber.Text = person.NationalNo;
                     UpdateMode = true;
-                    DataBack?.Invoke();
                     OnSendPersonID.Invoke(person.PersonID);
                 }
             }

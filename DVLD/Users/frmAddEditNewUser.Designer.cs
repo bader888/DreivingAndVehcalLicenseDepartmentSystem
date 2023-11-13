@@ -118,8 +118,7 @@
             this.ctrlPersonInfoWithFilter1.PersonID = 0;
             this.ctrlPersonInfoWithFilter1.Size = new System.Drawing.Size(812, 386);
             this.ctrlPersonInfoWithFilter1.TabIndex = 1;
-            this.ctrlPersonInfoWithFilter1.Load += new System.EventHandler(this.ctrlPersonInfoWithFilter1_Load);
-            // 
+             // 
             // tabLoginInfo
             // 
             this.tabLoginInfo.Controls.Add(this.checkboxIsActive);

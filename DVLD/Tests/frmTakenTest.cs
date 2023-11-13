@@ -44,13 +44,12 @@ namespace DVLD.Tests
             Test.TestResult = rbPass.Checked ? true : false;
             if (Test.Save())
             {
-                MessageBox.Show("Test Save Successfully!");
+                MessageBox.Show("Test Save Successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 _LockedTheTest();
                 DataBack?.Invoke();
-
             }
             else
-                MessageBox.Show("Test Save  Faild!");
+                MessageBox.Show($"Test Save Failed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
         }
     }

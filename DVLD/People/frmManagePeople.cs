@@ -30,16 +30,9 @@ namespace DVLD
             _LoadPeopleInfo();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            frmAddEditePerson addEditePerson = new frmAddEditePerson();
-            addEditePerson.ShowDialog();
-        }
-
         private void showToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int PersonID = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
-
             frmShowPersonInfo showPersonInfo = new frmShowPersonInfo(PersonID);
 
             showPersonInfo.ShowDialog();
@@ -55,18 +48,18 @@ namespace DVLD
         private void removeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int PersonID = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
-            // Ask the user if they are sure they want to delete the person
+
             DialogResult result = MessageBox.Show("Are you sure you want to delete this person?", "Delete Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
             {
                 if (clsPerson.DeletePerson(PersonID))
                 {
-                    MessageBox.Show("Delete Person Don");
+                    MessageBox.Show($"Person {PersonID} deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     _LoadPeopleInfo();
                 }
                 else
-                    MessageBox.Show("Delete Faild the user link With Data");
+                    MessageBox.Show("Delete Failed: The Person is linked with data", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -77,7 +70,6 @@ namespace DVLD
             frmAddEditePerson addEditePerson = new frmAddEditePerson(PersonID);
             addEditePerson.DataBack += _LoadPeopleInfo;// Subscribe to the event
             addEditePerson.ShowDialog();
-
         }
 
         private void _ShowFilterItem()
@@ -111,6 +103,13 @@ namespace DVLD
                 // Refresh the DataGridView to display the filtered results
                 dataGridView1.Refresh();
             }
+        }
+
+        private void btnAddNewPerson_Click(object sender, EventArgs e)
+        {
+            frmAddEditePerson addEditePerson = new frmAddEditePerson();
+            addEditePerson.ShowDialog();
+            _LoadPeopleInfo();
         }
     }
 }

@@ -28,26 +28,25 @@ namespace DVLD.Tests
         {
             if (clsTestAppointments.IsPersonHaveActiveTest(clsGlobal.L_DappID))
             {
-                MessageBox.Show("The Person Have Active Test you can't create new appointment");
+                MessageBox.Show("The Person Has an Active Test; You Can't Create a New Appointment", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             DataTable dt = clsTestAppointments.GetTestAppointmentForSpecificTest(clsGlobal.L_DappID, clsGlobal.TestType);
+            int TestAppointmentID;
             foreach (DataRow row in dt.Rows)
             {
-                int TestAppointmentID = (int)row["TestAppointmentID"];
+                TestAppointmentID = (int)row["TestAppointmentID"];
                 if (clsTests.IsTestPass(TestAppointmentID))
                 {
-                    MessageBox.Show("The Test Pass you can't create new appointment");
+                    MessageBox.Show("The Test Passed; You Can't Create a New Appointment", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             }
 
             frmScheduleTest frm = new frmScheduleTest();
             if (dt.Rows.Count > 0)
-            {
                 frm.ReTakeTest = true;
-            }
             frm.UpdateMode = false;
             frm.DataBack += _ShowTestAppointment;
             frm.ShowDialog();

@@ -180,7 +180,10 @@
             // 
             // btnSave
             // 
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSave.Location = new System.Drawing.Point(622, 326);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(120, 40);
@@ -191,7 +194,10 @@
             // 
             // btnClose
             // 
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnClose.Location = new System.Drawing.Point(481, 326);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(120, 40);
@@ -246,12 +252,12 @@
             this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker1.Location = new System.Drawing.Point(571, 94);
-            this.dateTimePicker1.MaxDate = new System.DateTime(2005, 10, 24, 0, 0, 0, 0);
-            this.dateTimePicker1.MinDate = new System.DateTime(1990, 10, 24, 0, 0, 0, 0);
+            this.dateTimePicker1.MaxDate = new System.DateTime(2005, 10, 10, 0, 0, 0, 0);
+            this.dateTimePicker1.MinDate = new System.DateTime(1950, 10, 24, 0, 0, 0, 0);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(177, 23);
             this.dateTimePicker1.TabIndex = 34;
-            this.dateTimePicker1.Value = new System.DateTime(2005, 10, 24, 0, 0, 0, 0);
+            this.dateTimePicker1.Value = new System.DateTime(2005, 10, 10, 0, 0, 0, 0);
             // 
             // txtPhone
             // 
