@@ -81,6 +81,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Applications\frmDetainLicenseApplication.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Applications\frmDetainLicenseApplication.Designer.cs">
+      <DependentUpon>frmDetainLicenseApplication.cs</DependentUpon>
+    </Compile>
     <Compile Include="Applications\frmInternationalDrvierLicenseApplication.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +110,18 @@
     </Compile>
     <Compile Include="Drivers\frmManageDrivers.Designer.cs">
       <DependentUpon>frmManageDrivers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="License\DetainReleaseLicenses\frmDetainLicense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="License\DetainReleaseLicenses\frmDetainLicense.Designer.cs">
+      <DependentUpon>frmDetainLicense.cs</DependentUpon>
+    </Compile>
+    <Compile Include="License\DetainReleaseLicenses\frmReleaseDetainLicense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="License\DetainReleaseLicenses\frmReleaseDetainLicense.Designer.cs">
+      <DependentUpon>frmReleaseDetainLicense.cs</DependentUpon>
     </Compile>
     <Compile Include="License\frmIssueInternationalLicense.cs">
       <SubType>Form</SubType>
@@ -318,6 +336,9 @@
     <Compile Include="Users\frmUserInfo.Designer.cs">
       <DependentUpon>frmUserInfo.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Applications\frmDetainLicenseApplication.resx">
+      <DependentUpon>frmDetainLicenseApplication.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Applications\frmInternationalDrvierLicenseApplication.resx">
       <DependentUpon>frmInternationalDrvierLicenseApplication.cs</DependentUpon>
     </EmbeddedResource>
@@ -329,6 +350,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Drivers\frmManageDrivers.resx">
       <DependentUpon>frmManageDrivers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="License\DetainReleaseLicenses\frmDetainLicense.resx">
+      <DependentUpon>frmDetainLicense.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="License\DetainReleaseLicenses\frmReleaseDetainLicense.resx">
+      <DependentUpon>frmReleaseDetainLicense.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="License\frmIssueInternationalLicense.resx">
       <DependentUpon>frmIssueInternationalLicense.cs</DependentUpon>

@@ -25,6 +25,8 @@ namespace DVLD
             }
         }
 
+        public int LicenseID { get; set; }
+
         private string GetIssueResone(string ReasonNumber)
         {
             switch (ReasonNumber)
@@ -100,14 +102,15 @@ namespace DVLD
                 lblFullName.Text = row["FullName"].ToString();
                 lblDriverID.Text = row["DriverID"].ToString();
                 lblClass.Text = row["ClassName"].ToString();
+                lblIsDetained.Text = clsDetainedLicenses.IsLicenseDetain(LicenseID) ? "Yes" : "No";
                 if (lblGendor.Text == "Male")
                     pbGendor.Load(clsGlobal.MaleImagePath);
                 else
                     pbGendor.Load(clsGlobal.FemaleImagePath);
-
-
                 this.DriverID = (int)row["DriverID"];
                 this.PersonID = (int)row["PersonID"];
+                this.LicenseID = LicenseID;
+
                 return true;
             }
 

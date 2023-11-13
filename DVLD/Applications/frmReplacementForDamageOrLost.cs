@@ -8,7 +8,7 @@ namespace DVLD.Applications
     public partial class frmReplacementForDamageOrLost : Form
     {
 
-        int _OldLicense = -1;
+        int _OldLicenseID = -1;
         public frmReplacementForDamageOrLost()
         {
             InitializeComponent();
@@ -18,7 +18,7 @@ namespace DVLD.Applications
         {
             lblApplicationDate.Text = DateTime.Now.ToShortDateString();
             lblCreatedByUser.Text = clsGlobal.CurrentUser.UserName;
-            lblOldLicenseID.Text = _OldLicense.ToString();
+            lblOldLicenseID.Text = _OldLicenseID.ToString();
         }
         private clsApplications CreateNewApplication()
         {
@@ -56,9 +56,9 @@ namespace DVLD.Applications
         private void ctrlDriverLicenseInfoWithFilter1_OnLicenseFound(int obj)
         {
 
-            _OldLicense = obj;
+            _OldLicenseID = obj;
             llShowLicenseHistory.Enabled = true;
-            clsLicense license = clsLicense.Find(_OldLicense);
+            clsLicense license = clsLicense.Find(_OldLicenseID);
             if (!license.IsActive)
                 MessageBox.Show("You can't replacement this license because it is deactivate!");
             else
@@ -66,7 +66,10 @@ namespace DVLD.Applications
             ShowReplacementApplicationInfo();
 
         }
-
+        private void DeactivateOldLicense()
+        {
+            clsLicense.DeactivateLicense(_OldLicenseID);
+        }
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -85,12 +88,14 @@ namespace DVLD.Applications
 
         private void btnIssueReplacement_Click(object sender, EventArgs e)
         {
+
             llShowLicenseInfo.Enabled = true;
-            clsLicense.DeactivateLicense(_OldLicense);
+            DeactivateOldLicense();
+
             clsApplications application = CreateNewApplication();
             if (application.Save())
             {
-                //create And Save new license To this person 
+
                 clsLicense License = CreateNewLicense();
                 License.ApplicationID = application.ApplicationID;
                 if (License.Save())

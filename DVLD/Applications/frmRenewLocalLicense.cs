@@ -40,8 +40,7 @@ namespace DVLD.Applications
 
         private void DeactivateOldLicense()
         {
-            _OldLicense.IsActive = false;
-            _OldLicense.Save();
+            clsLicense.DeactivateLicense(_OldLicenseID);
         }
 
         private clsApplications CreateNewApplication()

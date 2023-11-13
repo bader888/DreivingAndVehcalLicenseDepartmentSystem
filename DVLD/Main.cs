@@ -2,6 +2,7 @@
 using DVLD.Applications;
 using DVLD.Drivers;
 using DVLD.License;
+using DVLD.License.DetainReleaseLicenses;
 using DVLD.ManageApplications;
 using DVLD.ManageTestType;
 using DVLD.Users;
@@ -49,8 +50,6 @@ namespace DVLD
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
 
-            frmManageApplicationType manageApplicationType = new frmManageApplicationType();
-            manageApplicationType.ShowDialog();
         }
 
         private void manageTestTypeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -104,6 +103,37 @@ namespace DVLD
             frmReplacementForDamageOrLost frm = new frmReplacementForDamageOrLost();
             frm.ShowDialog();
 
+        }
+
+        private void detainLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmDetainLicense frm = new frmDetainLicense();
+            frm.ShowDialog();
+        }
+
+        private void releaseDetainedLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmReleaseDetainLicense frm = new frmReleaseDetainLicense();
+            frm.ShowDialog();
+        }
+
+        private void manageDetainedLicensesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmDetainLicenseApplication frm = new frmDetainLicenseApplication();
+            frm.ShowDialog();
+        }
+
+        private void manageApplicationTypeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            frmManageApplicationType manageApplicationType = new frmManageApplicationType();
+            manageApplicationType.ShowDialog();
+        }
+
+        private void retakeTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmLocalDrivingLicenseApplications frm = new frmLocalDrivingLicenseApplications();
+            frm.ShowDialog();
         }
     }
 }
