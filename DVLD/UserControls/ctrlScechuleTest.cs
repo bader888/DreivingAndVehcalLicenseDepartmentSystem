@@ -39,6 +39,24 @@ namespace DVLD.UserControls
 
         public bool UpdateMode { get; set; }
 
+        public void ShowTestTypeImage()
+        {
+            switch (clsGlobal.TestType)
+            {
+                case "vision":
+                    pbTestTypeImage.Load(clsGlobal.clsImages.Vision);
+                    break;
+
+                case "Written":
+                    pbTestTypeImage.Load(clsGlobal.clsImages.Written);
+                    break;
+
+                case "practical":
+                    pbTestTypeImage.Load(clsGlobal.clsImages.Parctical);
+                    break;
+            }
+        }
+
         public string Title
         {
             set
@@ -143,20 +161,21 @@ namespace DVLD.UserControls
                 _CreateNewApplication();
                 if (application.Save())
                 {
-                    //_CreateNewLocalDrivingLicenseApp();
-                    //localDrivingLicenseApplications.Save();
+
                 }
             }
             if (testAppointments.Save())
             {
-                MessageBox.Show("Test Appointment Save Sccessfully");
+                MessageBox.Show("Test appointment saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 if (OnAppointmentSave != null)
                     // Raise the event with a parameter
                     AppointmentSave(testAppointments.TestAppointmentID);
 
             }
             else
-                MessageBox.Show("faild");
+                MessageBox.Show("Operation failed. Please check your input and try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
         }
 
     }

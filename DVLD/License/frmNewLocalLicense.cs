@@ -23,6 +23,7 @@ namespace DVLD
             Complete = 2,
             Cancelled = 3
         }
+
         private clsApplications CreateNewApplication()
         {
             clsApplications application = new clsApplications();
@@ -35,7 +36,6 @@ namespace DVLD
             application.PaidFees = decimal.Parse(lblFees.Text);
             return application;
         }
-
 
         private clsLocalDrivingLicenseApplications CreateNewLocalDrivingLicenseApplication()
         {

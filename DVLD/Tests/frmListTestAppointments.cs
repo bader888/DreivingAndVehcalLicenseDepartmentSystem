@@ -12,9 +12,29 @@ namespace DVLD.Tests
         // Declare an event using the delegate
         public event DataBackEventHandler DataBack;
 
+        bool IsRetakeTest = false;
         public frmListTestAppointments()
         {
             InitializeComponent();
+        }
+
+
+        private void ShowTestTypeImage()
+        {
+            switch (clsGlobal.TestType)
+            {
+                case "vision":
+                    pbTestTypeImage.Load(clsGlobal.clsImages.Vision);
+                    break;
+
+                case "Written":
+                    pbTestTypeImage.Load(clsGlobal.clsImages.Written);
+                    break;
+
+                case "practical":
+                    pbTestTypeImage.Load(clsGlobal.clsImages.Parctical);
+                    break;
+            }
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -24,15 +44,21 @@ namespace DVLD.Tests
 
         }
 
-        private void btnAddNewAppointment_Click(object sender, EventArgs e)
+        private bool IsPersonHaveActiveTest()
         {
             if (clsTestAppointments.IsPersonHaveActiveTest(clsGlobal.L_DappID))
             {
                 MessageBox.Show("The Person Has an Active Test; You Can't Create a New Appointment", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                return true;
             }
 
+            return false;
+        }
+
+        private bool IsTestPassed()
+        {
             DataTable dt = clsTestAppointments.GetTestAppointmentForSpecificTest(clsGlobal.L_DappID, clsGlobal.TestType);
+            IsRetakeTest = dt.Rows.Count > 0;
             int TestAppointmentID;
             foreach (DataRow row in dt.Rows)
             {
@@ -40,21 +66,32 @@ namespace DVLD.Tests
                 if (clsTests.IsTestPass(TestAppointmentID))
                 {
                     MessageBox.Show("The Test Passed; You Can't Create a New Appointment", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    return true;
                 }
             }
+            return false;
+        }
 
+        private void OpenSchudleTestForm()
+        {
             frmScheduleTest frm = new frmScheduleTest();
-            if (dt.Rows.Count > 0)
-                frm.ReTakeTest = true;
+            frm.ReTakeTest = IsRetakeTest;
             frm.UpdateMode = false;
-            frm.DataBack += _ShowTestAppointment;
+            frm.DataBack += ShowTestAppointment;
             frm.ShowDialog();
         }
 
-        //call this function 
-        private void _ShowTestAppointment()
+        private void btnAddNewAppointment_Click(object sender, EventArgs e)
         {
+            if (!IsPersonHaveActiveTest() && !IsTestPassed())
+            {
+                OpenSchudleTestForm();
+            }
+        }
+
+        private void ShowTestAppointment()
+        {
+            lblTitle.Text = clsGlobal.TestType + " test" + " appointment";
             ctrlDrivingLicenseApplicationInfo1._ShowDrivingLicenseApplicationInfo(clsGlobal.L_DappID);
             dgvLicenseTestAppointments.DataSource = clsTestAppointments.GetTestAppointmentForSpecificTest(clsGlobal.L_DappID, clsGlobal.TestType);
         }
@@ -64,7 +101,7 @@ namespace DVLD.Tests
             frmScheduleTest frm = new frmScheduleTest();
             frm.TestAppointmentID = int.Parse(dgvLicenseTestAppointments.SelectedCells[0].Value.ToString());
             frm.UpdateMode = true;
-            frm.DataBack += _ShowTestAppointment;
+            frm.DataBack += ShowTestAppointment;
             frm.ShowDialog();
         }
 
@@ -72,15 +109,32 @@ namespace DVLD.Tests
         {
             frmTakenTest frm = new frmTakenTest();
             frm.TestAppointmentID = int.Parse(dgvLicenseTestAppointments.SelectedCells[0].Value.ToString());
-            frm.DataBack += _ShowTestAppointment;
+            frm.DataBack += ShowTestAppointment;
             frm.ShowDialog();
 
         }
 
         private void frmListTestAppointments_Load(object sender, EventArgs e)
         {
-            lblTitle.Text = clsGlobal.TestType + " test" + " appointment";
-            _ShowTestAppointment();
+
+            ShowTestTypeImage();
+            ShowTestAppointment();
+        }
+
+        private void cmsApplications_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            //if the test locked enable the strip menu items
+            bool IsLocked = dgvLicenseTestAppointments.SelectedCells[3].Value.ToString().ToLower() == "true" ? true : false;
+            if (IsLocked)
+            {
+                takeTestToolStripMenuItem.Enabled = false;
+                editToolStripMenuItem.Enabled = false;
+            }
+            else
+            {
+                takeTestToolStripMenuItem.Enabled = true;
+                editToolStripMenuItem.Enabled = true;
+            }
         }
     }
 }

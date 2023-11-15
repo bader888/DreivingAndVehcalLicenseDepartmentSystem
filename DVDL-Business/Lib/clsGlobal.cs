@@ -9,6 +9,49 @@ namespace DVDL_Business
         static public string MaleImagePath = "C:\\DVLDImages\\Male 512.png";
         static public string DrivePath = @"C:\DVLDImages";
 
+        public class clsImages
+        {
+            static public string Vision
+            {
+                get
+                {
+                    return @"C:\Users\lenovo\source\repos\DreivingAndVehcalLicenseDepartmentSystem\Icons\Vision 512.png";
+                }
+            }
+
+            static public string Written
+            {
+                get
+                {
+                    return @"C:\Users\lenovo\source\repos\DreivingAndVehcalLicenseDepartmentSystem\Icons\Written Test 512.png";
+                }
+            }
+
+            static public string Parctical
+            {
+                get
+                {
+                    return @"C:\Users\lenovo\source\repos\DreivingAndVehcalLicenseDepartmentSystem\Icons\driving-test 512.png";
+                }
+            }
+
+            static public string Male
+            {
+                get
+                {
+                    return @"C:\Users\lenovo\source\repos\DreivingAndVehcalLicenseDepartmentSystem\Icons\Man 32.png";
+                }
+            }
+
+            static public string Female
+            {
+                get
+                {
+                    return @"C:\Users\lenovo\source\repos\DreivingAndVehcalLicenseDepartmentSystem\Icons\Woman 32.png";
+                }
+            }
+        }
+
         static public string TestType { get; set; }
 
         static public clsUsers CurrentUser { get; set; }

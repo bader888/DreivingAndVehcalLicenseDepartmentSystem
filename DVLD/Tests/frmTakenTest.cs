@@ -22,6 +22,29 @@ namespace DVLD.Tests
             testAppointment.Save();
         }
 
+        private clsTests CreateNewTest()
+        {
+            clsTests Test = new clsTests();
+            Test.TestAppointmentID = this.TestAppointmentID;
+            Test.Notes = txtNotes.Text;
+            Test.CreatedByUserID = clsGlobal.CurrentUser.UserID;
+            Test.TestResult = rbPass.Checked ? true : false;
+            return Test;
+        }
+
+        private void SaveTest()
+        {
+            clsTests Test = CreateNewTest();
+            if (Test.Save())
+            {
+                MessageBox.Show("Test Save Successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                _LockedTheTest();
+                DataBack?.Invoke();
+            }
+            else
+                MessageBox.Show($"Test Save Failed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
         private void frmTakenTest_Load(object sender, System.EventArgs e)
         {
             ctrlScheduledTest1.ShowScheduleTestInfo(TestAppointmentID);
@@ -32,25 +55,9 @@ namespace DVLD.Tests
             this.Close();
         }
 
-
-
         private void btnSave_Click_1(object sender, System.EventArgs e)
         {
-
-            clsTests Test = new clsTests();
-            Test.TestAppointmentID = this.TestAppointmentID;
-            Test.Notes = txtNotes.Text;
-            Test.CreatedByUserID = clsGlobal.CurrentUser.UserID;
-            Test.TestResult = rbPass.Checked ? true : false;
-            if (Test.Save())
-            {
-                MessageBox.Show("Test Save Successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                _LockedTheTest();
-                DataBack?.Invoke();
-            }
-            else
-                MessageBox.Show($"Test Save Failed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+            SaveTest();
         }
     }
 }

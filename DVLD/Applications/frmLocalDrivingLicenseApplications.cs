@@ -153,11 +153,13 @@ namespace DVLD.ManageApplications
             {
                 if (clsLocalDrivingLicenseApplications.DeleteLocalDrivingLicenseApplications(clsGlobal.L_DappID))
                 {
-                    MessageBox.Show("Delete Done");
+                    MessageBox.Show("Deletion successful.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                     ShowAllLocalDrivingLicensesApps();
                 }
                 else
-                    MessageBox.Show("You Can't Delete This Application!");
+                    MessageBox.Show("Deletion failed. You can't delete this application.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
         }
 
@@ -201,7 +203,6 @@ namespace DVLD.ManageApplications
 
         private void CancelApplicaitonToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
-
             clsGlobal.L_DappID = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
             DialogResult result = MessageBox.Show("Are you sure you want to cancel this application?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 

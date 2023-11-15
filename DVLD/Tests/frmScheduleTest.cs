@@ -25,16 +25,19 @@ namespace DVLD.Tests
             this.Close();
         }
 
-        private void frmScheduleTest_Load(object sender, System.EventArgs e)
+        private void ShowSchuledTestInfo()
         {
-
             ctrlScechuleTest1.RetakeTest = this.ReTakeTest;
             ctrlScechuleTest1.UpdateMode = this.UpdateMode;
             ctrlScechuleTest1.TestappointmentID = this.TestAppointmentID;
             ctrlScechuleTest1.Title = "Schedule " + clsGlobal.TestType + " Test";
-            //image for the test -->not completed
+            ctrlScechuleTest1.ShowTestTypeImage();
             ctrlScechuleTest1.ShowScheduleTestInfo();
+        }
 
+        private void frmScheduleTest_Load(object sender, System.EventArgs e)
+        {
+            ShowSchuledTestInfo();
         }
 
         private void ctrlScechuleTest1_OnAppointmentSave(int obj)
