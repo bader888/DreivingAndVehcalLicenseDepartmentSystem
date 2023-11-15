@@ -23,23 +23,26 @@ namespace DVLD
             Complete = 2,
             Cancelled = 3
         }
-
-        const int PaidFees = 15;
-
-        static int LocalDrivingLicenseID = clsApplicationType.GetApplicationTypeIDbyName("new Local");
-
-        clsApplicationType applicationType = clsApplicationType.Find(LocalDrivingLicenseID);
-
-        clsApplications application = new clsApplications();
-
-        clsLocalDrivingLicenseApplications drivingLicenseApplications = new clsLocalDrivingLicenseApplications();
-
-        private void _ShowLicenseInfo()
+        private clsApplications CreateNewApplication()
         {
-            _showLicenseClasses();
-            lblApplicationDate.Text = DateTime.Now.ToShortDateString();
-            lblFees.Text = applicationType.ApplicationFees.ToString();
-            lblCreatedByUser.Text = clsGlobal.CurrentUser.UserName;
+            clsApplications application = new clsApplications();
+            application.ApplicantPersonID = ctrlPersonInfoWithFilter1.PersonID;
+            application.ApplicationStatus = 1; //New
+            application.ApplicationTypeID = clsApplicationType.GetApplicationTypeIDbyName("New Local Driving License Service");
+            application.CreatedByUserID = clsGlobal.CurrentUser.UserID;
+            application.LastStatusDate = DateTime.Now;
+            application.ApplicationDate = DateTime.Now;
+            application.PaidFees = decimal.Parse(lblFees.Text);
+            return application;
+        }
+
+
+        private clsLocalDrivingLicenseApplications CreateNewLocalDrivingLicenseApplication()
+        {
+            string licenseClass = cbLicenseClass.SelectedItem.ToString();
+            clsLocalDrivingLicenseApplications LocalDrivingLicenseApplications = new clsLocalDrivingLicenseApplications();
+            LocalDrivingLicenseApplications.LicenseClassID = clsLicenseClasses.GetLicenseClassIDbyName(licenseClass);
+            return LocalDrivingLicenseApplications;
         }
 
         private void _showLicenseClasses()
@@ -52,42 +55,31 @@ namespace DVLD
             cbLicenseClass.SelectedItem = cbLicenseClass.Items[2].ToString();
         }
 
-        private void _SaveL_D_LApp(int LicenseClassID)
+        private void _ShowLicenseInfo()
         {
-            drivingLicenseApplications.ApplicationID = application.ApplicationID;
-            drivingLicenseApplications.LicenseClassID = LicenseClassID;
-            if (drivingLicenseApplications.Save())
-            {
-                MessageBox.Show("application Save Successfully!");
-
-                lblLocalDrivingLicebseApplicationID.Text = application.ApplicationID.ToString();
-
-                DataBack?.Invoke();
-            }
+            _showLicenseClasses();
+            lblApplicationDate.Text = DateTime.Now.ToShortDateString();
+            lblFees.Text = clsApplicationType.GetApplicationTypeFeesbyName("New Local Driving License Service").ToString();
+            lblCreatedByUser.Text = clsGlobal.CurrentUser.UserName;
         }
 
         private void _SaveApplication()
         {
-            application.ApplicantPersonID = ctrlPersonInfoWithFilter1.PersonID;
-            application.CreatedByUserID = clsGlobal.CurrentUser.UserID;
-            application.ApplicationDate = DateTime.Now;
-            application.ApplicationStatus = (int)enApplicationStatus.New;
-            application.LastStatusDate = DateTime.Now;
-            application.PaidFees = PaidFees;
-            application.ApplicationTypeID = clsApplicationType.GetApplicationTypeIDbyName("New local");
-
-            int LicenseClassID = clsLicenseClasses.GetLicenseClassIDbyName(cbLicenseClass.SelectedItem.ToString());
-
-            if (clsApplications.isApplicationExist(application.ApplicantPersonID, LicenseClassID))
+            clsApplications application = CreateNewApplication();
+            clsLocalDrivingLicenseApplications localDrivingLicenseApplications = CreateNewLocalDrivingLicenseApplication();
+            if (clsApplications.isApplicationExist(application.ApplicantPersonID, localDrivingLicenseApplications.LicenseClassID))
             {
-                MessageBox.Show("Application Save Faild", "you have app with the same class not completed!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Failed to save application. Another incomplete application with the same class exists.", "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-
             }
 
             if (application.Save())
             {
-                _SaveL_D_LApp(LicenseClassID);
+                localDrivingLicenseApplications.ApplicationID = application.ApplicationID;
+                localDrivingLicenseApplications.Save();
+                lblLocalDrivingLicebseApplicationID.Text = localDrivingLicenseApplications.ApplicationID.ToString();
+                MessageBox.Show("Your local driving license application has been saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DataBack?.Invoke();
             }
         }
 
@@ -110,13 +102,6 @@ namespace DVLD
         {
             tcApplicationInfo.SelectedTab = tpApplicationInfo;
             btnSave.Enabled = true;
-
         }
-
-        private void cbLicenseClass_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            btnSave.Enabled = true;
-        }
-
     }
 }

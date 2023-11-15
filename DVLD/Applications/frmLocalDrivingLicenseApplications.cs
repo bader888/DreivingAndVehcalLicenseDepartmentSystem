@@ -82,7 +82,7 @@ namespace DVLD.ManageApplications
             }
         }
 
-        private void _ShowAllL_D_Lapps()
+        private void ShowAllLocalDrivingLicensesApps()
         {
             dtAllL_Dapps = clsLocalDrivingLicenseApplications.GetAllLocalDrivingLicenseApplications();
             dataGridView1.DataSource = dtAllL_Dapps;
@@ -92,13 +92,13 @@ namespace DVLD.ManageApplications
 
         private void frmLocalDrivingLicenseApplications_Load(object sender, System.EventArgs e)
         {
-            _ShowAllL_D_Lapps();
+            ShowAllLocalDrivingLicensesApps();
         }
 
         private void AddnewL_D_Lapp_Click(object sender, System.EventArgs e)
         {
             frmNewLocalLicense frm = new frmNewLocalLicense();
-            frm.DataBack += _ShowAllL_D_Lapps; // Subscribe to the event
+            frm.DataBack += ShowAllLocalDrivingLicensesApps; // Subscribe to the event
             frm.ShowDialog();
         }
 
@@ -107,7 +107,7 @@ namespace DVLD.ManageApplications
             clsGlobal.L_DappID = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
             frmListTestAppointments frm = new frmListTestAppointments();
             clsGlobal.TestType = "vision";
-            frm.DataBack += _ShowAllL_D_Lapps;
+            frm.DataBack += ShowAllLocalDrivingLicensesApps;
             frm.ShowDialog();
 
         }
@@ -117,7 +117,7 @@ namespace DVLD.ManageApplications
             clsGlobal.L_DappID = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
             frmListTestAppointments frm = new frmListTestAppointments();
             clsGlobal.TestType = "Written";
-            frm.DataBack += _ShowAllL_D_Lapps;
+            frm.DataBack += ShowAllLocalDrivingLicensesApps;
             frm.ShowDialog();
         }
 
@@ -126,7 +126,7 @@ namespace DVLD.ManageApplications
             clsGlobal.L_DappID = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
             frmListTestAppointments frm = new frmListTestAppointments();
             clsGlobal.TestType = "practical";
-            frm.DataBack += _ShowAllL_D_Lapps;
+            frm.DataBack += ShowAllLocalDrivingLicensesApps;
             frm.ShowDialog();
         }
 
@@ -134,7 +134,7 @@ namespace DVLD.ManageApplications
         {
             clsGlobal.L_DappID = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
             frmIssueLocalLicenseFirstTime frm = new frmIssueLocalLicenseFirstTime();
-            frm.DataBack += _ShowAllL_D_Lapps;
+            frm.DataBack += ShowAllLocalDrivingLicensesApps;
             frm.ShowDialog();
         }
 
@@ -154,7 +154,7 @@ namespace DVLD.ManageApplications
                 if (clsLocalDrivingLicenseApplications.DeleteLocalDrivingLicenseApplications(clsGlobal.L_DappID))
                 {
                     MessageBox.Show("Delete Done");
-                    _ShowAllL_D_Lapps();
+                    ShowAllLocalDrivingLicensesApps();
                 }
                 else
                     MessageBox.Show("You Can't Delete This Application!");
@@ -209,7 +209,7 @@ namespace DVLD.ManageApplications
             {
                 //update the status of application ==> Cancelled
                 clsApplications.UpdateApplicationStatus(clsGlobal.L_DappID, 2);
-                _ShowAllL_D_Lapps();
+                ShowAllLocalDrivingLicensesApps();
             }
         }
 
@@ -217,7 +217,7 @@ namespace DVLD.ManageApplications
         {
             if (string.IsNullOrEmpty(txtFilterValue.Text))
             {
-                _ShowAllL_D_Lapps();
+                ShowAllLocalDrivingLicensesApps();
                 return;
             }
             string filterText = txtFilterValue.Text;

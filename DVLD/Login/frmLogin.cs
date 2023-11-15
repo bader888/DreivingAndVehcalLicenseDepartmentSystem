@@ -47,14 +47,12 @@ namespace DVLD
                     UserAuthentication.SetUserCredentials(UserName, EnterdPassword);
                 else
                     clsFileOperations.ClearFile(clsGlobal.filePath);
+                //global
+                clsGlobal.CurrentUser = User;
                 _OpenMainScreen();
             }
             else
                 MessageBox.Show("Wrong Password", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-
-            //global
-            clsGlobal.CurrentUser = User;
         }
 
         private void ShowRememberUserInfo()
