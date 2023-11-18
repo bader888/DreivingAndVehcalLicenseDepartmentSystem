@@ -44,15 +44,6 @@ namespace DVLD
             {
                 string destinationPath = Path.Combine(destinationFolder, newFileName);
 
-                //if (UpdateMode)
-                //{
-                //    // Check if the destination file already exists and delete it 
-                //    if (File.Exists(person.ImagePath))
-                //    {
-                //        File.Delete(person.ImagePath);
-                //    }
-                //}
-                // Copy the image to the destination folder with the new name
                 File.Copy(sourceImagePath, destinationPath);
 
                 person.ImagePath = destinationPath;
@@ -66,8 +57,51 @@ namespace DVLD
             }
 
         }
+        private void _ResetDefualtValues()
+        {
+            //this will initialize the reset the defaule values
+            _FillCountriesInComoboBox();
 
-        private void _LoadCountries()
+            if (!UpdateMode)
+            {
+                lblHeader.Text = "Add New Person";
+                person = new clsPerson();
+            }
+            else
+            {
+                lblHeader.Text = "Update Person";
+            }
+
+            //set default image for the person.
+            if (radioMale.Checked)
+                imgPerson.Image = Image.FromFile(clsGlobal.MaleImagePath);
+            else
+                imgPerson.Image = Image.FromFile(clsGlobal.FemaleImagePath);
+
+            //hide/show the remove linke incase there is no image for the person.
+            linkRemoveImage.Visible = (imgPerson.ImageLocation != null);
+
+            //we set the max date to 18 years from today, and set the default value the same.
+            dateTimePicker1.MaxDate = DateTime.Now.AddYears(-18);
+            dateTimePicker1.Value = dateTimePicker1.MaxDate;
+
+            //should not allow adding age more than 100 years
+            dateTimePicker1.MinDate = DateTime.Now.AddYears(-100);
+
+            //this will set default country to jordan.
+            comboBoxCountries.SelectedIndex = comboBoxCountries.FindString("Jordan");
+
+            txtFirstName.Text = "";
+            txtSecondName.Text = "";
+            txtThirdName.Text = "";
+            txtLastName.Text = "";
+            txtNationalNumber.Text = "";
+            radioMale.Checked = true;
+            txtPhone.Text = "";
+            txtEmail.Text = "";
+            txtAddress.Text = "";
+        }
+        private void _FillCountriesInComoboBox()
         {
             DataTable dtCountries = clsCountries.GetAllCountries();
             foreach (DataRow row in dtCountries.Rows)
@@ -75,12 +109,19 @@ namespace DVLD
                 comboBoxCountries.Items.Add(row["CountryName"]);
             }
 
-            comboBoxCountries.SelectedItem = comboBoxCountries.Items[82];//select iraq as defualt country
+            comboBoxCountries.SelectedIndex = comboBoxCountries.FindString("iraq");
         }
 
         private void _ShowPersonInfo()
         {
             person = clsPerson.Find(_PersonID);
+            if (person == null)
+            {
+                MessageBox.Show("No Person with ID = " + _PersonID, "Person Not Found", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                this.Close();
+                return;
+            }
+
             lblPersonID.Text = person.PersonID.ToString();
             lblNationalNumber.Text = person.NationalNo;
             txtFirstName.Text = person.FirstName;
@@ -92,8 +133,18 @@ namespace DVLD
             txtPhone.Text = person.Phone;
             txtNationalNumber.Text = person.NationalNo;
             dateTimePicker1.Value = person.DateOfBirth;
-            comboBoxCountries.SelectedItem = comboBoxCountries.Items[person.NationalityCountryID - 1];
-            imgPerson.Load(person.ImagePath);
+            comboBoxCountries.SelectedIndex = comboBoxCountries.FindString(person.CountryInfo.CountryName);
+
+            //handle the nullable value 
+            if (person.ImagePath != "")
+                imgPerson.Load(person.ImagePath);
+            else
+            {
+                if (radioFamle.Checked)
+                    person.ImagePath = clsGlobal.FemaleImagePath;
+                else
+                    person.ImagePath = clsGlobal.MaleImagePath;
+            }
             PersonHaveImage = true;
             linkRemoveImage.Visible = true;
             if (person.Gendor == 0)
@@ -180,12 +231,18 @@ namespace DVLD
                 person.NationalNo = txtNationalNumber.Text;
                 person.DateOfBirth = dateTimePicker1.Value;
                 person.Address = txtAddress.Text;
-                person.NationalityCountryID = clsCountries.GetCountryIDbyName(comboBoxCountries.SelectedItem.ToString());
+
+                person.NationalityCountryID = clsCountries.Find(comboBoxCountries.Text).ID;
 
                 //if the person has no Image --set the defult image
                 if (string.IsNullOrWhiteSpace(person.ImagePath))
                 {
-                    person.ImagePath = clsGlobal.MaleImagePath;
+                    if (radioFamle.Checked)
+                        person.ImagePath = clsGlobal.FemaleImagePath;
+                    else
+                        person.ImagePath = clsGlobal.MaleImagePath;
+
+                    linkRemoveImage.Visible = false;
                 }
 
                 if (radioMale.Checked)
@@ -195,13 +252,17 @@ namespace DVLD
 
                 if (person.Save())
                 {
-                    MessageBox.Show("Data Save Successfully");
+                    MessageBox.Show("Data Saved Successfully.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                     lblHeader.Text = "Update Person";
                     lblPersonID.Text = person.PersonID.ToString();
                     lblNationalNumber.Text = person.NationalNo;
                     UpdateMode = true;
+
                     OnSendPersonID.Invoke(person.PersonID);
                 }
+                else
+                    MessageBox.Show("Error: Data Is not Saved Successfully.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -245,7 +306,7 @@ namespace DVLD
             radioMale.Checked = true;
 
             //load countries to comboBoxCountries
-            _LoadCountries();
+            _FillCountriesInComoboBox();
 
             if (UpdateMode)
             {

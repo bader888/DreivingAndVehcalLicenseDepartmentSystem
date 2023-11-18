@@ -1,4 +1,5 @@
 ﻿using DVDL_DataAccess;
+using DVLD.People;
 using System;
 using System.Data;
 
@@ -23,6 +24,7 @@ namespace DVDL_Business
         public int NationalityCountryID { set; get; }
         public string ImagePath { set; get; }
 
+        public clsCountries CountryInfo;
         private clsPerson(int PersonID, string NationalNo, string FirstName, string SecondName, string ThirdName, string LastName, DateTime DateOfBirth, byte Gendor, string Address, string Phone, string Email, int NationalityCountryID, string ImagePath)
         {
             this.PersonID = PersonID;
@@ -38,6 +40,7 @@ namespace DVDL_Business
             this.Email = Email;
             this.NationalityCountryID = NationalityCountryID;
             this.ImagePath = ImagePath;
+            this.CountryInfo = clsCountries.Find(NationalityCountryID);
             Mode = enMode.Update;
         }
 

@@ -46,42 +46,90 @@ namespace DVDL_Business.Lib
             }
         }
 
-
-        static public void AddUserCredentialsAndClearFile(string filePath, string username, string password)
+        public static bool RememberUsernameAndPassword(string Username, string Password)
         {
+
+            //--> In General 
+            //create file and save the username and password in it if the usermae is empty delete the file 
             try
             {
-                if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+                //1-this will get the current project directory folder.
+                string currentDirectory = System.IO.Directory.GetCurrentDirectory();
+
+
+                //2-Define the path to the text file where you want to save the data
+                string filePath = currentDirectory + "\\data.txt";
+
+                //3-incase the username is empty, delete the file
+                if (Username == "" && File.Exists(filePath))
                 {
-                    throw new ArgumentException("Username and password cannot be empty or whitespace.");
+                    File.Delete(filePath);
+                    return true;
+
                 }
 
-                // Check if the file exists; if not, create a new one
-                if (!File.Exists(filePath))
+                // concatonate username and passwrod withe seperator.
+                string dataToSave = Username + "#//#" + Password;
+
+                // Create a StreamWriter to write to the file
+                using (StreamWriter writer = new StreamWriter(filePath))
                 {
-                    using (FileStream fs = File.Create(filePath))
-                    {
-                        // Create an empty file
-                    }
+                    // Write the data to the file
+                    writer.WriteLine(dataToSave);
+
+                    return true;
                 }
-
-                // Format the credentials as a string (e.g., "username:password")
-                string credentials = $"{username}:{password}";
-
-                // Clear the file by overwriting it with the new credentials
-                File.WriteAllText(filePath, credentials + Environment.NewLine);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                //  MessageBox.Show($"An error occurred: {ex.Message}");
+                return false;
             }
+
         }
 
+        public static bool GetStoredCredential(ref string Username, ref string Password)
+        {
+            //this will get the stored username and password and will return true if found and false if not found.
+            try
+            {
+                //gets the current project's directory
+                string currentDirectory = System.IO.Directory.GetCurrentDirectory();
+
+                // Path for the file that contains the credential.
+                string filePath = currentDirectory + "\\data.txt";
+
+                // Check if the file exists before attempting to read it
+                if (File.Exists(filePath))
+                {
+                    // Create a StreamReader to read from the file
+                    using (StreamReader reader = new StreamReader(filePath))
+                    {
+                        // Read data line by line until the end of the file
+                        string line;
+                        while ((line = reader.ReadLine()) != null)
+                        {
+
+                            string[] result = line.Split(new string[] { "#//#" }, StringSplitOptions.None);
+
+                            //the first index in array is the user name and second index is the password
+                            Username = result[0];
+                            Password = result[1];
+                        }
+                        return true;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show($"An error occurred: {ex.Message}");
+                return false;
+            }
+
+        }
     }
-
-
-
-
-
-
 }

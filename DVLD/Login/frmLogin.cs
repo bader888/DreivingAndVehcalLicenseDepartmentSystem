@@ -1,6 +1,5 @@
 ﻿using DVDL_Business;
 using DVDL_Business.Lib;
-using DVLD.Users;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -8,6 +7,9 @@ namespace DVLD
 {
     public partial class frmLogin : Form
     {
+
+        //password 111
+        //username c200
         public frmLogin()
         {
             InitializeComponent();
@@ -16,64 +18,62 @@ namespace DVLD
 
         private bool isPasswordVisible = false;
 
-        private void _OpenMainScreen()
+        private void OpenMainScreen()
         {
-            Main main = new Main();
+            Main main = new Main(this);
+            this.Hide();
             main.ShowDialog();
         }
 
-        private void Login()
+        private void btnLogin_Click(object sender, System.EventArgs e)
         {
-            string UserName = txtUserName.Text;
-            string EnterdPassword = txtPassword.Text;//entierd password 
+            string UserName = txtUserName.Text, EnterdPassword = txtPassword.Text;//entierd password 
+            //find the user by the name  
             clsUsers User = clsUsers.Find(UserName);
 
             if (User == null)
             {
+
                 MessageBox.Show("User Not Found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (!User.IsActive)
             {
+
                 MessageBox.Show("User Not Active!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtUserName.Focus();
                 return;
             }
 
-            //  User.Password == stored password
+            //  return true if the stored password = entred password
             if (clsEncrypter.PasswordHasher.VerifyPassword(EnterdPassword, User.Password))
             {
+
                 if (checkBoxRemeberMe.Checked)
-                    UserAuthentication.SetUserCredentials(UserName, EnterdPassword);
+                    clsFileOperations.RememberUsernameAndPassword(UserName, EnterdPassword);
                 else
-                    clsFileOperations.ClearFile(clsGlobal.filePath);
-                //global
+                    clsFileOperations.RememberUsernameAndPassword(" ", " ");
+
+
                 clsGlobal.CurrentUser = User;
-                _OpenMainScreen();
+                OpenMainScreen();
             }
             else
                 MessageBox.Show("Wrong Password", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        private void ShowRememberUserInfo()
-        {
-            if (!clsFileOperations.IsFileEmpty(clsGlobal.filePath))
-            {
-                var (username, password) = UserAuthentication.GetUserCredentials();
-                txtUserName.Text = username;
-                txtPassword.Text = password;
-                checkBoxRemeberMe.Checked = true;
-            }
-        }
-
-        private void btnLogin_Click(object sender, System.EventArgs e)
-        {
-            Login();
-        }
-
         private void frmLogin_Load(object sender, System.EventArgs e)
         {
-            ShowRememberUserInfo();
+            string username = "", password = "";
+            if (clsFileOperations.GetStoredCredential(ref username, ref password))
+            {
+                txtUserName.Text = username.Trim();
+                txtPassword.Text = password.Trim();
+                checkBoxRemeberMe.Checked = true;
+            }
+            else
+                checkBoxRemeberMe.Checked = false;
 
         }
 

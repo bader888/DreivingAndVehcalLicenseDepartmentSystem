@@ -13,9 +13,11 @@ namespace DVLD
 {
     public partial class Main : Form
     {
-        public Main()
+        frmLogin Login;
+        public Main(frmLogin frmLogin)
         {
             InitializeComponent();
+            Login = frmLogin;
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -44,13 +46,11 @@ namespace DVLD
 
         private void signOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Login.Show();
+            clsGlobal.CurrentUser = null;
             this.Close();
         }
 
-        private void toolStripButton3_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void manageTestTypeToolStripMenuItem_Click(object sender, EventArgs e)
         {
